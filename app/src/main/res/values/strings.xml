@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TripLog</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="myTrips">My trips</string>
+    <string name="myProfile">Profile</string>
+    <string name="action_settings">Settings</string>
+    <string name="share">Share</string>
+    <string name="communicate">Communicate</string>
+    <string name="aboutUs">About us</string>
+    <string name="feedback">Give us a feedback</string>
+</resources>
