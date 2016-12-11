@@ -9,7 +9,7 @@ public class Viaje {
     private String lugar_viaje;
     private Boolean favorito_viaje;
 
-    public Viaje(String descripcion_viaje, String lugar_viaje, Boolean favorito_viaje) {
+    public Viaje( String lugar_viaje, Boolean favorito_viaje, String descripcion_viaje) {
         this.descripcion_viaje = descripcion_viaje;
         this.lugar_viaje = lugar_viaje;
         this.favorito_viaje = favorito_viaje;

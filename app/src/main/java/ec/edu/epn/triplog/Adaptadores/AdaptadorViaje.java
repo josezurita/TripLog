@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import ec.edu.epn.triplog.R;
@@ -33,19 +35,19 @@ public class AdaptadorViaje extends ArrayAdapter {
         //converView representa toda la fila del item
         if (convertView == null) {
             LayoutInflater li = LayoutInflater.from(getContext());
-            convertView = li.inflate(R.layout.lv_equipaje, null);
+            convertView = li.inflate(R.layout.lv_viajes, null);
         }
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv_lugarViaje);
         //Image img= (Image)convertView.findViewById(R.id.img_viaje);
+        ImageView iv=(ImageView)convertView.findViewById(R.id.iv_favorito);
         TextView tv1 = (TextView) convertView.findViewById(R.id.tv_descViaje);
 
-
-        String lugarViaje = viaje[position].getLugar_viaje();
         tv.setText(viaje[position].getLugar_viaje());
-
-        String descViaje = viaje[position].getDescripcion_viaje();
         tv1.setText(viaje[position].getDescripcion_viaje());
+
+
+
 
         return convertView;
 

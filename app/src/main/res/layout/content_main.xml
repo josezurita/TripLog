@@ -13,8 +13,9 @@
     tools:showIn="@layout/app_bar_main"
     tools:context="ec.edu.epn.triplog.HomeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/lv_viajes">
+    </ListView>
 </RelativeLayout>

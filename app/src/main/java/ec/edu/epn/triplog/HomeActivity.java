@@ -13,14 +13,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import ec.edu.epn.triplog.Adaptadores.AdaptadorEquipaje;
+import ec.edu.epn.triplog.Adaptadores.AdaptadorViaje;
+import ec.edu.epn.triplog.vo.Equipaje;
+import ec.edu.epn.triplog.vo.Viaje;
+
+import static ec.edu.epn.triplog.R.layout.lv_viajes;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Viaje datos[] = new Viaje[3];
+    ListView lv_viajes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        lv_viajes = (ListView) findViewById(R.id.lv_viajes);
+        lv_viajes.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        Viaje datos[] = new Viaje[3];
+        datos[0] = new Viaje("Colombia", true,"Café");
+        datos[1] = new Viaje("Argentina", false, "Iguazu");
+        datos[2] = new Viaje("Ecuador", false, "Naturalez");
+
+        AdaptadorViaje av = new AdaptadorViaje(this,datos);
+        lv_viajes.setAdapter(av);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
