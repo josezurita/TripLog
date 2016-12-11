@@ -2,15 +2,15 @@
     <string name="app_name">TripLog</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="myTrips">My trips</string>
-    <string name="myProfile">Profile</string>
-    <string name="action_settings">Settings</string>
-    <string name="share">Share</string>
-    <string name="communicate">Communicate</string>
-    <string name="aboutUs">About us</string>
+    <string name="myTrips">Mis Viajes</string>
+    <string name="myProfile">Perfil</string>
+    <string name="action_settings">Configuración</string>
+    <string name="share">Compartir</string>
+    <string name="communicate">Contacto</string>
+    <string name="aboutUs">Acerca de</string>
     <string name="feedback">Give us a feedback</string>
-    <string name="title_activity_wish_list">WishList</string>
-
+    <string name="title_activity_wish_list">Lista de deseos</string>
+    <string name="favorites">Favoritos</string>
 
     <string name="titulo_admin_viaje">Administrar Viaje</string>
     <string name="tv_nombre">Nombre</string>
