@@ -10,4 +10,50 @@
     <string name="aboutUs">About us</string>
     <string name="feedback">Give us a feedback</string>
     <string name="title_activity_wish_list">WishList</string>
+
+
+
+    <string name="titulo_admin_viaje">Administrar Viaje</string>
+    <string name="tv_nombre">Nombre</string>
+    <string name="hint_nombre">Ingrese el nombre del viaje</string>
+    <string name="tv_fechaInicio">Fecha de Inicio</string>
+    <string name="hint_fechaInicio">Seleccione la fecha de inicio del viaje</string>
+    <string name="tv_fechaFin">Fecha de Fin</string>
+    <string name="hint_fechaFin">Seleccione la fecha de fin del viaje</string>
+    <string name="tv_pais">País</string>
+    <string-array name="Paises">
+        <item>Ecuador</item>
+        <item>Colombia</item>
+        <item>Perú</item>
+        <item>Brasil</item>
+        <item>Argentina</item>
+    </string-array>
+    <string name="tv_descripcion">Descripción</string>
+    <string name="hint_descripción">Ingrese una descripción del viaje</string>
+    <string name="tv_imagenes">Imagenes</string>
+    <string name="btn_camara">Cámara</string>
+    <string name="btn_galeria">Galería</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_agregarAlarma">Agregar Alarma</string>
+    <string name="titulo_equipaje">Lista de Equipaje</string>
+    <string name="hint_items">Agrega un nuevo ítem a tu lista</string>
+    <string name="titulo_admin_alarma">Administrar Alarma</string>
+    <string name="titulo_admin_plan">Plan de Viaje</string>
+    <string name="btn_agregarPlan">Administrar Plan de Viaje</string>
+    <string name="btn_adminEquipaje">Administrar Equipaje</string>
+    <string name="tv_aerolinea">Aerolínea</string>
+    <string name="hint_aerolinea">Ingrese el nombre de la Aerolínea</string>
+    <string name="tv_hora">Seleccione la Hora</string>
+
+    <string-array name="equipaje">
+        <item>Cámara</item>
+        <item>Repelete</item>
+        <item>Cargador</item>
+        <item>Batería</item>
+    </string-array>
+
+
+
+
 </resources>
