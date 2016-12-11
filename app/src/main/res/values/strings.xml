@@ -9,4 +9,5 @@
     <string name="communicate">Communicate</string>
     <string name="aboutUs">About us</string>
     <string name="feedback">Give us a feedback</string>
+    <string name="title_activity_wish_list">WishList</string>
 </resources>
