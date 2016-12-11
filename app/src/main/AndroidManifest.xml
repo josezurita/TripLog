@@ -12,7 +12,7 @@
             android:name=".HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".UserRegisterActivity" />
         <activity
             android:name=".WishList"
@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminEquipaje"></activity>
+        <activity android:name=".AdminEquipaje" />
+        <activity android:name=".AdminRecordatorio" />
+        <activity android:name=".AdminViaje"></activity>
     </application>
 
 </manifest>

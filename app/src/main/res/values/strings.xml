@@ -12,7 +12,6 @@
     <string name="title_activity_wish_list">WishList</string>
 
 
-
     <string name="titulo_admin_viaje">Administrar Viaje</string>
     <string name="tv_nombre">Nombre</string>
     <string name="hint_nombre">Ingrese el nombre del viaje</string>
@@ -52,8 +51,6 @@
         <item>Cargador</item>
         <item>Batería</item>
     </string-array>
-
-
 
 
 </resources>
