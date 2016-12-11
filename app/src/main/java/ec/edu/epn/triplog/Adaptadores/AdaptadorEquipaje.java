@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import ec.edu.epn.triplog.AdminEquipaje;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Equipaje;
 
@@ -49,11 +50,6 @@ public class AdaptadorEquipaje extends ArrayAdapter {
 
         return convertView;
 
-    }
-
-    public void showPopUp(View v){
-        //PopupMenu popup = new Pop
-        //MenuInflater inflater =
     }
 
 
