@@ -3,6 +3,7 @@
     package="ec.edu.epn.triplog">
 
     <application
+        android:name=".TripLogApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,6 +29,11 @@
         <activity android:name=".AdminRecordatorio" />
         <activity android:name=".AdminViaje" />
         <activity android:name=".Perfil"></activity>
+        <meta-data android:name="AA_DB_NAME" android:value="triplog.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="5" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="ec.edu.epn.triplog.vo.Usuario" />
     </application>
 
 </manifest>
