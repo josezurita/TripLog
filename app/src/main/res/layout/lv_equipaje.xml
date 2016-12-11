@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/cb_equipaje"
         android:onClick="cb_clic"/>
+    <ImageView
+        android:id="@+id/iv_popup_equipaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more"/>
+
 </LinearLayout>

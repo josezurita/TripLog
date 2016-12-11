@@ -4,18 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_lugarViaje"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:onClick="" />
-
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_lugarViaje"
+        android:layout_width="wrap_content"
+        android:layout_weight="10"
+        android:layout_height="wrap_content" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:src="@drawable/ic_nofavorito"
-        android:id="@+id/iv_favorito"/>
+        android:id="@+id/iv_favorito" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:id="@+id/iv_more" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_descViaje"

@@ -1,10 +1,14 @@
 package ec.edu.epn.triplog;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import ec.edu.epn.triplog.Adaptadores.AdaptadorEquipaje;
 import ec.edu.epn.triplog.vo.Equipaje;

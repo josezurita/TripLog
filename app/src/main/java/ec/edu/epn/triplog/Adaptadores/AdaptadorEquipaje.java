@@ -3,12 +3,16 @@ package ec.edu.epn.triplog.Adaptadores;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import ec.edu.epn.triplog.AdminEquipaje;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Equipaje;
 
@@ -35,6 +39,7 @@ public class AdaptadorEquipaje extends ArrayAdapter {
         }
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv_equipaje);
+
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.cb_equipaje);
 
 
@@ -43,10 +48,19 @@ public class AdaptadorEquipaje extends ArrayAdapter {
         cb.setChecked(equipaje[position].getListo());
         equipaje[position].setListo(cb.isChecked());
 
+
+        final ImageView ivMenu=(ImageView)convertView.findViewById(R.id.iv_popup_equipaje);
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getContext(),view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.menu_lv_equipaje,popup.getMenu());
+                popup.show();
+            }
+        });
         return convertView;
-
     }
-
 
 
 }

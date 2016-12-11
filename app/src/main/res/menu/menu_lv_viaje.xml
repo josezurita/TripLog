@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_equipaje"
+        android:title="@string/equipaje">
+    </item>
+    <item
+        android:id="@+id/action_editar_viaje"
+        android:title="@string/editar_viaje">
+    </item>
+    <item
+        android:id="@+id/action_eliminar_viaje"
+        android:title="@string/eliminar_viaje">
+    </item>
+</menu>
