@@ -45,6 +45,8 @@
     <string name="tv_aerolinea">Aerolínea</string>
     <string name="hint_aerolinea">Ingrese el nombre de la Aerolínea</string>
     <string name="tv_hora">Seleccione la Hora</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
 
     <string-array name="equipaje">
         <item>Cámara</item>

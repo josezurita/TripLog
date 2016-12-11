@@ -3,10 +3,12 @@ package ec.edu.epn.triplog.Adaptadores;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import ec.edu.epn.triplog.R;
@@ -45,6 +47,11 @@ public class AdaptadorEquipaje extends ArrayAdapter {
 
         return convertView;
 
+    }
+
+    public void showPopUp(View v){
+        //PopupMenu popup = new Pop
+        //MenuInflater inflater =
     }
 
 

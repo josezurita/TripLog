@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="editar_viaje">Editar</string>
+    <string name="eliminar_viaje">Eliminar</string>
+</resources>
