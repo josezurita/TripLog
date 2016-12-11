@@ -1,9 +1,11 @@
 package ec.edu.epn.triplog;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -31,12 +33,6 @@ public class    AdminEquipaje extends AppCompatActivity {
     public void onListItemClick(ListView parent, View v, int position, long id) {
         CheckedTextView item = (CheckedTextView) v;
         item.setEnabled(datos[position].getListo());
-    }
-    public void showPopUp(View v){
-        PopupMenu popup = new PopupMenu(this,v);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_lv_equipaje,popup.getMenu());
-        popup.show();
     }
 }
 

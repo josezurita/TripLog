@@ -15,11 +15,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/cb_equipaje"
         android:onClick="cb_clic"/>
-    <TextView
-        android:id="@+id/tv_popup_equipaje"
+    <ImageView
+        android:id="@+id/iv_popup_equipaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_more"
-        android:onClick="showPopUp"/>
+        android:src="@drawable/ic_more"/>
 
 </LinearLayout>

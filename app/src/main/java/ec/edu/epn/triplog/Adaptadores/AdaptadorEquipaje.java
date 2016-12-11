@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -48,10 +49,18 @@ public class AdaptadorEquipaje extends ArrayAdapter {
         equipaje[position].setListo(cb.isChecked());
 
 
+        final ImageView ivMenu=(ImageView)convertView.findViewById(R.id.iv_popup_equipaje);
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getContext(),view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.menu_lv_equipaje,popup.getMenu());
+                popup.show();
+            }
+        });
         return convertView;
-
     }
-
 
 
 }

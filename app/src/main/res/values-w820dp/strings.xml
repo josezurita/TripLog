@@ -2,4 +2,5 @@
 <resources>
     <string name="editar_viaje">Editar</string>
     <string name="eliminar_viaje">Eliminar</string>
+    <string name="equipaje">Ver equipaje</string>
 </resources>

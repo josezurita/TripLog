@@ -7,12 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import ec.edu.epn.triplog.LoginActivity;
@@ -52,12 +54,6 @@ public class AdaptadorViaje extends ArrayAdapter {
 
         tv1.setText(viaje[position].getDescripcion_viaje());
 
-
-
-
-
-
-
         if(viaje[position].getFavorito_viaje()==true){
             iv.setImageResource(R.drawable.ic_favorito);
         }
@@ -69,6 +65,16 @@ public class AdaptadorViaje extends ArrayAdapter {
                 }else{
                     iv.setImageResource(R.drawable.ic_favorito);
                 }
+            }
+        });
+        final ImageView ivMenu=(ImageView)convertView.findViewById(R.id.iv_more);
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getContext(),view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.menu_lv_viaje,popup.getMenu());
+                popup.show();
             }
         });
 
