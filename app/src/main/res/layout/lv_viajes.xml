@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/tv_lugarViaje"
         android:layout_width="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="10"
         android:layout_height="wrap_content" />
 
     <ImageView
@@ -21,6 +21,13 @@
         android:src="@drawable/ic_nofavorito"
         android:id="@+id/iv_favorito"
         />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:id="@+id/iv_more"
+            />
     </LinearLayout>
 
     <TextView
