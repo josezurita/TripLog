@@ -37,6 +37,7 @@ public class AdaptadorEquipaje extends ArrayAdapter {
         }
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv_equipaje);
+
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.cb_equipaje);
 
 
@@ -44,6 +45,7 @@ public class AdaptadorEquipaje extends ArrayAdapter {
         tv.setText(equipaje[position].getItem());
         cb.setChecked(equipaje[position].getListo());
         equipaje[position].setListo(cb.isChecked());
+
 
         return convertView;
 
