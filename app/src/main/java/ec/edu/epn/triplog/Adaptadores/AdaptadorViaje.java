@@ -57,7 +57,7 @@ public class AdaptadorViaje extends ArrayAdapter {
 
 
 
-        
+
         if(viaje[position].getFavorito_viaje()==true){
             iv.setImageResource(R.drawable.ic_favorito);
         }
