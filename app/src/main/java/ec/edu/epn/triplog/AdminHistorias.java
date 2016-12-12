@@ -52,4 +52,6 @@ public class AdminHistorias extends AppCompatActivity  {
         startActivity(intent);
     }
 
+
+
 }

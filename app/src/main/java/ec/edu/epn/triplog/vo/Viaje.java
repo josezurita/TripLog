@@ -112,8 +112,8 @@ public class Viaje extends Model{
         return new Select()
                 .from(Viaje.class)
                 .where("activo = ?",true)
-                .and("usuario = ? ",usuario.getId())
-                .and("favoritoViaje = ?",true)
+                .where("usuario = ? ",usuario.getId())
+                .where("favoritoViaje = ?",true)
                 .execute();
     }
 }
