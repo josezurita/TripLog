@@ -22,6 +22,9 @@ public class Comentario extends Model {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name="usuario")
+    private Usuario usuario;
+
     @Column(name="activo")
     private boolean activo;
 
@@ -39,6 +42,14 @@ public class Comentario extends Model {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public static Comentario getById(Long id){
