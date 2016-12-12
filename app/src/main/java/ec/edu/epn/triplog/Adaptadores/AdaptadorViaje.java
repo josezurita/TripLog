@@ -18,7 +18,10 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Bundle;
 
+import ec.edu.epn.triplog.AdminEquipaje;
+import ec.edu.epn.triplog.HomeActivity;
 import ec.edu.epn.triplog.LoginActivity;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.UserRegisterActivity;
@@ -74,6 +77,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
             @Override
             public void onClick(View view) {
                 PopupMenu popup = new PopupMenu(getContext(),view);
+                popup.setOnMenuItemClickListener(AdaptadorViaje.this);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.menu_lv_viaje,popup.getMenu());
                 popup.show();
@@ -88,6 +92,8 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.action_equipaje:
+                Intent intent=new Intent(getContext(),AdminEquipaje.class);
+                //startActivity(intent);
                 Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
                 System.out.println("Ingresa a ver equipaje");
                 return true;
