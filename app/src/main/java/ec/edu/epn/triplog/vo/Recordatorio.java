@@ -1,18 +1,23 @@
 package ec.edu.epn.triplog.vo;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Table;
+
 /**
  * Created by ASUS R454LA on 11/12/2016.
  */
+@Table(name="Recordatorio")
+public class Recordatorio extends Model{
 
-public class Recordatorio {
-    private String strHora;
+    public Recordatorio() {
+    }
+
     public Recordatorio(String strHora, String strDias, Boolean blSwitch) {
         this.strHora = strHora;
         this.strDias = strDias;
         this.blSwitch = blSwitch;
     }
-    public Recordatorio() {
-    }
+    private String strHora;
     private String strDias;
     private Boolean blSwitch;
     public String getStrHora() {

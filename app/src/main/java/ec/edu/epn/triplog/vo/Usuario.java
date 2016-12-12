@@ -14,23 +14,64 @@ public class Usuario extends Model {
         super();
     }
 
-    @Column(name = "remote_id", unique = true)
-    public long remoteId;
+    public Usuario(String contrasena, String usuario, String nombre, String email) {
+        super();
+        this.contrasena = contrasena;
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.email = email;
+    }
 
     @Column(name = "usuario", unique = true)
-    public String usuario;
+    private String usuario;
 
     @Column(name = "nombre")
-    public String nombre;
+    private String nombre;
 
     @Column(name = "email")
-    public String email;
+    private String email;
 
     @Column(name = "contrasena")
-    public String contrasena;
+    private String contrasena;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
     public static Usuario getByUsuario(String usuario){
         return new Select().from(Usuario.class).where("usuario = ?",usuario).executeSingle();
+    }
+
+    public static Usuario getById(Long id){
+        return new Select().from(Usuario.class).where("Id = ?",id).executeSingle();
     }
 
     public static List<Usuario> getAll() {

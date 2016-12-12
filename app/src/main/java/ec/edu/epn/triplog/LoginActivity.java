@@ -40,12 +40,13 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!edtContrasena.getText().toString().equals(usuario.contrasena)) {
+                if(!edtContrasena.getText().toString().equals(usuario.getContrasena())) {
                     Toast.makeText(getApplicationContext(), "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                intent.putExtra("idUsuario",usuario.getId());
                 startActivity(intent);
             }
         });

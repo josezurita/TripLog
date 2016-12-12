@@ -33,7 +33,7 @@
         <meta-data android:name="AA_DB_VERSION" android:value="5" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="ec.edu.epn.triplog.vo.Usuario" />
+            android:value="ec.edu.epn.triplog.vo.Usuario"/>
     </application>
 
 </manifest>

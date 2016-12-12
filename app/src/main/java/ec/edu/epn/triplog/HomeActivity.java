@@ -3,9 +3,8 @@ package ec.edu.epn.triplog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,24 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
-import ec.edu.epn.triplog.Adaptadores.AdaptadorEquipaje;
 import ec.edu.epn.triplog.Adaptadores.AdaptadorViaje;
-import ec.edu.epn.triplog.vo.Equipaje;
+import ec.edu.epn.triplog.vo.Usuario;
 import ec.edu.epn.triplog.vo.Viaje;
-
-import static ec.edu.epn.triplog.R.layout.lv_viajes;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Viaje datos[] = new Viaje[3];
     ListView lv_viajes;
+    private Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        usuario=Usuario.getById(getIntent().getLongExtra("idUsuario",0));
+        System.out.println(usuario.getId());
+        System.out.println(usuario.getNombre());
 
         lv_viajes = (ListView) findViewById(R.id.lv_viajes);
         lv_viajes.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
