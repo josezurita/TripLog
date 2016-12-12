@@ -18,6 +18,8 @@ import ec.edu.epn.triplog.AdminEquipaje;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Viaje;
 
+import static android.support.v4.content.ContextCompat.startActivity;
+
 /**
  * Created by ASUS R454LA on 11/12/2016.
  */
@@ -90,7 +92,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         switch (menuItem.getItemId()){
             case R.id.action_equipaje:
                 Intent intent=new Intent(getContext(),AdminEquipaje.class);
-                //startActivity(intent);
+                getContext().startActivity(intent);
                 Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
                 System.out.println("Ingresa a ver equipaje");
                 return true;
