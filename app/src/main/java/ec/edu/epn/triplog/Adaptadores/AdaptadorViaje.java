@@ -48,6 +48,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vi = viaje[position];
                 Intent intent=new Intent(getContext(),AdminHistorias.class);
                 intent.putExtra("idViaje",vi.getId());
                 getContext().startActivity(intent);
@@ -85,7 +86,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                vi = viaje[position];
                 PopupMenu popup = new PopupMenu(getContext(),view);
                 popup.setOnMenuItemClickListener(AdaptadorViaje.this);
                 MenuInflater inflater = popup.getMenuInflater();

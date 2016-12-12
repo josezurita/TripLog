@@ -31,7 +31,7 @@ public class AdminHistorias extends AppCompatActivity  {
         lv_historias.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         List<Historia> lstHistorias=Historia.getAll(viaje);
-
+        System.out.println(lstHistorias.size());
         AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]));
         lv_historias.setAdapter(av);
     }

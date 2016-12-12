@@ -71,9 +71,5 @@
             android:text="@string/btn_guardar"
             android:layout_gravity="center"
             android:onClick="guardarHistoria"/>
-
-
-
-
     </LinearLayout>
 </ScrollView>
