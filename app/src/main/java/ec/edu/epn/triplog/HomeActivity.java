@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity
         //List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
         List<Viaje> lstViajes=Viaje.getFavoritesByUserId(usuario);
 
-        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]));
+        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]),this);
         lv_viajes.setAdapter(av);
 
 
@@ -74,8 +74,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
-
-        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]));
+        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]),this);
         lv_viajes.setAdapter(av);
     }
 
@@ -142,5 +141,11 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void actualizar (){
+        List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
+        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]),this);
+        lv_viajes.setAdapter(av);
     }
 }
