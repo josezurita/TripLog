@@ -13,9 +13,13 @@
     tools:showIn="@layout/app_bar_main"
     tools:context="ec.edu.epn.triplog.HomeActivity">
 
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lv_viajes">
-    </ListView>
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_viajes">
+        </ListView>
+    </ScrollView>
 </RelativeLayout>

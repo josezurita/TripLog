@@ -55,12 +55,19 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(viaje[position].isFavoritoViaje()==true){
+                Viaje viajeActual = new Viaje();
+                viajeActual = viaje[position];
+                if (viajeActual.isFavoritoViaje() == true) {
+                    viajeActual.setFavoritoViaje(false);
                     iv.setImageResource(R.drawable.ic_nofavorito);
-                }else{
+                } else {
+                    viajeActual.setFavoritoViaje(true);
                     iv.setImageResource(R.drawable.ic_favorito);
+                    Toast.makeText(getContext(), "Viaje agregado a favoritos", Toast.LENGTH_SHORT).show();
                 }
+                viajeActual.save();
             }
+
         });
         final ImageView ivMenu=(ImageView)convertView.findViewById(R.id.iv_more);
         ivMenu.setOnClickListener(new View.OnClickListener() {
