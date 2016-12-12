@@ -33,12 +33,7 @@ public class HomeActivity extends AppCompatActivity
 
         lv_viajes = (ListView) findViewById(R.id.lv_viajes);
         lv_viajes.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        //Viaje datos[] = new Viaje[3];
-        //datos[0] = new Viaje("Colombia", true,"Café");
-        //datos[1] = new Viaje("Argentina", false, "Iguazu");
-        //datos[2] = new Viaje("Ecuador", false, "Naturalez");
 
-        //List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
         List<Viaje> lstViajes=Viaje.getFavoritesByUserId(usuario);
 
         AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]),this);
@@ -55,8 +50,6 @@ public class HomeActivity extends AppCompatActivity
                 Intent intent=new Intent(HomeActivity.this,AdminViaje.class);
                 intent.putExtra("idUsuario",usuario.getId());
                 startActivity(intent);
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
             }
         });
 
@@ -135,6 +128,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.feedback) {
             Intent intent = new Intent(this, Feedback.class);
+            intent.putExtra("idUsuario",usuario.getId());
             startActivity(intent);
         }
 

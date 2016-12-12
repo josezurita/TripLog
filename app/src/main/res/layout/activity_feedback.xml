@@ -22,12 +22,13 @@
         android:layout_gravity="left"
         android:gravity="left"
         android:lines="3"
-        android:maxLines="3" />
+        android:maxLines="3"
+        android:id="@+id/edtDescripcionFeed" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="guardarfeedback"
+        android:onClick="guardarFeedback"
         android:text="@string/btn_guardar" />
 </LinearLayout>
