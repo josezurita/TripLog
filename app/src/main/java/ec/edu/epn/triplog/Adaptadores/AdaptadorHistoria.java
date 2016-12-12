@@ -74,7 +74,6 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
                 //intent.putExtra("idViaje",vi.getId());
                 //getContext().startActivity(intent);
                 Toast.makeText(getContext(),"Editar equipaje",Toast.LENGTH_LONG).show();
-                System.out.println("Ingresa a ver equipaje");
                 return true;
             case R.id.action_eliminar_equipaje:
                 Toast.makeText(getContext(),"Eliminar equipaje",Toast.LENGTH_LONG).show();
