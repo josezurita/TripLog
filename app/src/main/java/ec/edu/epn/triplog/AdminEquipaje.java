@@ -10,24 +10,26 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 
+import java.util.List;
+
 import ec.edu.epn.triplog.Adaptadores.AdaptadorEquipaje;
 import ec.edu.epn.triplog.vo.Equipaje;
+import ec.edu.epn.triplog.vo.Usuario;
+import ec.edu.epn.triplog.vo.Viaje;
 
 public class    AdminEquipaje extends AppCompatActivity {
     private ListView lv_equipaje;
     Equipaje datos[] = new Equipaje[3];
+    private Viaje viaje;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_equipaje);
+        viaje= Viaje.getById(getIntent().getLongExtra("idViaje",0));
         lv_equipaje = (ListView) findViewById(R.id.lv_equipaje);
         lv_equipaje.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        Equipaje datos[] = new Equipaje[3];
-        datos[0] = new Equipaje("Cámara", false);
-        datos[1] = new Equipaje("Zapatos", true);
-        datos[2] = new Equipaje("Efectivo", false);
-
-        AdaptadorEquipaje ua = new AdaptadorEquipaje(this,datos);
+        List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
+        AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
         lv_equipaje.setAdapter(ua);
     }
     public void onListItemClick(ListView parent, View v, int position, long id) {

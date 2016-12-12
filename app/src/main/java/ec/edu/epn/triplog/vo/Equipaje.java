@@ -3,6 +3,9 @@ package ec.edu.epn.triplog.vo;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
+
+import java.util.List;
 
 /**
  * Created by ASUS R454LA on 11/12/2016.
@@ -31,6 +34,9 @@ public class Equipaje extends Model {
     @Column(name="activo")
     private boolean activo;
 
+    @Column(name="fk_viaje")
+    private Viaje viaje;
+
     public String getItem() {
         return item;
     }
@@ -55,8 +61,20 @@ public class Equipaje extends Model {
         this.activo = activo;
     }
 
+    public void setViaje(Viaje viaje) {this.viaje = viaje;}
+
+    public Viaje getViaje() { return viaje; }
+
     public String toString() {
         return item;
+    }
+
+    public static List<Equipaje> getAllByViajeId(Viaje viaje) {
+        return new Select()
+                .from(Equipaje.class)
+                .where("activo = ?",true)
+                .and("viaje = ? ",viaje.getId())
+                .execute();
     }
 
 }

@@ -14,8 +14,8 @@
     <string name="favorites">Favoritos</string>
 
     <string name="titulo_admin_viaje">Administrar Viaje</string>
-    <string name="tv_nombre">Nombre</string>
-    <string name="hint_nombre">Ingrese el nombre del viaje</string>
+    <string name="tv_nombre">Destino</string>
+    <string name="hint_nombre">Ingrese el destino de su viaje</string>
     <string name="tv_fechaInicio">Fecha de Inicio</string>
     <string name="hint_fechaInicio">Seleccione la fecha de inicio del viaje</string>
     <string name="tv_fechaFin">Fecha de Fin</string>

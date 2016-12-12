@@ -18,11 +18,12 @@ public class Viaje extends Model{
         super();
     }
     
-    public Viaje( String lugarViaje, Boolean favoritoViaje, String descripcionViaje) {
+    public Viaje( String lugarViaje, Boolean favoritoViaje, String descripcionViaje, Usuario usuario) {
         super();
         this.descripcionViaje = descripcionViaje;
         this.lugarViaje = lugarViaje;
         this.favoritoViaje = favoritoViaje;
+        this.usuario = usuario;
     }
 
     @Column(name = "nombre")
@@ -42,6 +43,14 @@ public class Viaje extends Model{
 
     @Column(name="activo")
     private boolean activo;
+
+    public static Viaje getByViaje(String viaje){
+        return new Select().from(Usuario.class).where("nombre = ?",viaje).and("activo = ?",true).executeSingle();
+    }
+
+    public static Viaje getById(Long id){
+        return new Select().from(Viaje.class).where("Id = ?",id).and("activo = ?",true).executeSingle();
+    }
 
     public String getNombre() {
         return nombre;
@@ -96,6 +105,15 @@ public class Viaje extends Model{
                 .from(Viaje.class)
                 .where("activo = ?",true)
                 .and("usuario = ? ",usuario.getId())
+                .execute();
+    }
+
+    public static List<Viaje> getFavoritesByUserId(Usuario usuario){
+        return new Select()
+                .from(Viaje.class)
+                .where("activo = ?",true)
+                .and("usuario = ? ",usuario.getId())
+                .and("favoritoViaje = ?",true)
                 .execute();
     }
 }

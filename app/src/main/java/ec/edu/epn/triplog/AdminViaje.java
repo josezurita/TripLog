@@ -24,20 +24,18 @@ public class AdminViaje extends AppCompatActivity {
         usuario= Usuario.getById(getIntent().getLongExtra("idUsuario",0));
         edtNombreViaje =(EditText)findViewById(R.id.edtNombreViaje);
         edtDescripcion =(EditText)findViewById(R.id.edtDescripcionViaje);
-        spnPaisViaje =(Spinner)findViewById(R.id.spnPaisViaje);
 
     }
 
     public void guardarViaje(View v){
-        if(edtNombreViaje.getText().toString().isEmpty()||edtDescripcion.getText().toString().isEmpty()||
-                spnPaisViaje.getSelectedItem().toString().isEmpty()){
+        if(edtNombreViaje.getText().toString().isEmpty()||edtDescripcion.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
             return;
         }
         Viaje viaje=new Viaje();
         viaje.setNombre(edtNombreViaje.getText().toString());
         viaje.setDescripcionViaje(edtDescripcion.getText().toString());
-        viaje.setLugarViaje(spnPaisViaje.getSelectedItem().toString());
+        viaje.setLugarViaje(edtNombreViaje.getText().toString());
         viaje.setUsuario(usuario);
         viaje.setFavoritoViaje(false);
         viaje.setActivo(true);

@@ -38,7 +38,8 @@ public class HomeActivity extends AppCompatActivity
         //datos[1] = new Viaje("Argentina", false, "Iguazu");
         //datos[2] = new Viaje("Ecuador", false, "Naturalez");
 
-        List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
+        //List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
+        List<Viaje> lstViajes=Viaje.getFavoritesByUserId(usuario);
 
         AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]));
         lv_viajes.setAdapter(av);

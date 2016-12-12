@@ -47,62 +47,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_descripción"
             android:id="@+id/edtDescripcionViaje" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_pais" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:entries="@array/Paises"
-                android:id="@+id/spnPaisViaje"></Spinner>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/tv_imagenes" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_camara" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_galeria" />
-
-        </LinearLayout>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_agregarPlan"
-            android:id="@+id/btn_adminPlan"
-            android:onClick="abrir_adminPlan"/>
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +64,6 @@
                 android:text="@string/btn_cancelar"
                 android:id="@+id/btn_cancelar"
                 />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -28,6 +28,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
 
     private Viaje[] viaje;
 
+
     public AdaptadorViaje(Context context, Viaje[] viaje) {
         super(context, android.R.layout.simple_expandable_list_item_1, viaje);
         this.viaje = viaje;
@@ -89,9 +90,11 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
+        Viaje viaje = new Viaje();
         switch (menuItem.getItemId()){
             case R.id.action_equipaje:
                 Intent intent=new Intent(getContext(),AdminEquipaje.class);
+                intent.putExtra("idViaje",viaje.getId());
                 getContext().startActivity(intent);
                 Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
                 System.out.println("Ingresa a ver equipaje");
