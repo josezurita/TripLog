@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import ec.edu.epn.triplog.AdminEquipaje;
 import ec.edu.epn.triplog.AdminHistorias;
+import ec.edu.epn.triplog.AdminViaje;
+import ec.edu.epn.triplog.HomeActivity;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Viaje;
 
@@ -27,11 +29,13 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
 
     private Viaje[] viaje;
     private Viaje vi;
+    private HomeActivity homeActivity;
 
 
-    public AdaptadorViaje(Context context, Viaje[] viaje) {
+    public AdaptadorViaje(Context context, Viaje[] viaje, HomeActivity homeActivity) {
         super(context, android.R.layout.simple_expandable_list_item_1, viaje);
         this.viaje = viaje;
+        this.homeActivity=homeActivity;
     }
 
     @NonNull
@@ -110,14 +114,18 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 Intent intent=new Intent(getContext(),AdminEquipaje.class);
                 intent.putExtra("idViaje",vi.getId());
                 getContext().startActivity(intent);
-                Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
-                System.out.println("Ingresa a ver equipaje");
                 return true;
             case R.id.action_editar_viaje:
-                Toast.makeText(getContext(),"Editar viaje",Toast.LENGTH_LONG).show();
+                Intent intent1= new Intent(getContext(),AdminViaje.class);
+                intent1.putExtra("idViaje", vi.getId());
+                getContext().startActivity(intent1);
                 return true;
             case R.id.action_eliminar_viaje:
-                Toast.makeText(getContext(),"Eliminar viaje",Toast.LENGTH_LONG).show();
+                vi.setActivo(false);
+                vi.save();
+                Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+                this.notifyDataSetChanged();
+                homeActivity.actualizar();
                 return true;
             default:
                 return false;

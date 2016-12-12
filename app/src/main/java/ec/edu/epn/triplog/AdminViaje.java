@@ -16,7 +16,7 @@ public class AdminViaje extends AppCompatActivity {
     private EditText edtNombreViaje;
     private EditText edtDescripcion;
     private Spinner spnPaisViaje;
-
+    private Viaje viaje;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +24,11 @@ public class AdminViaje extends AppCompatActivity {
         usuario= Usuario.getById(getIntent().getLongExtra("idUsuario",0));
         edtNombreViaje =(EditText)findViewById(R.id.edtNombreViaje);
         edtDescripcion =(EditText)findViewById(R.id.edtDescripcionViaje);
+        viaje= Viaje.getById(getIntent().getLongExtra("idViaje",0));
+        if(viaje!=null){
+            ((EditText) findViewById(R.id.edtNombreViaje)).setText(viaje.getLugarViaje());
+            ((EditText) findViewById(R.id.edtDescripcionViaje)).setText(viaje.getDescripcionViaje());
+        }
 
     }
 
@@ -32,11 +37,13 @@ public class AdminViaje extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
             return;
         }
-        Viaje viaje=new Viaje();
+        if(viaje==null){
+            viaje=new Viaje();
+            viaje.setUsuario(usuario);
+        }
         viaje.setNombre(edtNombreViaje.getText().toString());
         viaje.setDescripcionViaje(edtDescripcion.getText().toString());
         viaje.setLugarViaje(edtNombreViaje.getText().toString());
-        viaje.setUsuario(usuario);
         viaje.setFavoritoViaje(false);
         viaje.setActivo(true);
 
