@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import ec.edu.epn.triplog.AdminRecordatorio;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Recordatorio;
 
@@ -36,7 +35,7 @@ public class AdaptadorRecordatorio extends ArrayAdapter {
         Switch sw=(Switch)convertView.findViewById(R.id.sw_alarma);
         tv.setText(alarma[position].getStrHora());
         tv1.setText(alarma[position].getStrDias());
-        sw.setChecked(alarma[position].getBlSwitch());
+        sw.setChecked(alarma[position].isBlSwitch());
         return convertView;
     }
 

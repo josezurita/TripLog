@@ -34,6 +34,9 @@ public class Usuario extends Model {
     @Column(name = "contrasena")
     private String contrasena;
 
+    @Column(name="activo")
+    private boolean activo;
+
     public String getUsuario() {
         return usuario;
     }
@@ -66,17 +69,26 @@ public class Usuario extends Model {
         this.contrasena = contrasena;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     public static Usuario getByUsuario(String usuario){
-        return new Select().from(Usuario.class).where("usuario = ?",usuario).executeSingle();
+        return new Select().from(Usuario.class).where("usuario = ?",usuario).and("activo = ?",true).executeSingle();
     }
 
     public static Usuario getById(Long id){
-        return new Select().from(Usuario.class).where("Id = ?",id).executeSingle();
+        return new Select().from(Usuario.class).where("Id = ?",id).and("activo = ?",true).executeSingle();
     }
 
     public static List<Usuario> getAll() {
         return new Select()
                 .from(Usuario.class)
+                .where("activo = ?",true)
                 .execute();
     }
 }

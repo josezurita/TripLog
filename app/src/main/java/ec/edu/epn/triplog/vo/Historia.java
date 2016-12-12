@@ -21,7 +21,7 @@ public class Historia extends Model {
         this.imagen = imagen;
     }
 
-    @Column(name = "nombre", unique = true)
+    @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "descripcion")
@@ -30,31 +30,40 @@ public class Historia extends Model {
     @Column(name = "imagen")
     private String imagen;
 
+    @Column(name="activo")
+    private boolean activo;
 
-    public String getnombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setnombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getdescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setdescripcion(String descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getimagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setimagen(String imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     public static Historia getBynombre(String nombre){
         return new Select().from(Historia.class).where("nombre = ?",nombre).executeSingle();

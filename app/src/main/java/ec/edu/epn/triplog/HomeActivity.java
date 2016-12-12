@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import java.util.List;
 
 import ec.edu.epn.triplog.Adaptadores.AdaptadorViaje;
 import ec.edu.epn.triplog.vo.Usuario;
@@ -29,17 +30,17 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         usuario=Usuario.getById(getIntent().getLongExtra("idUsuario",0));
-        System.out.println(usuario.getId());
-        System.out.println(usuario.getNombre());
 
         lv_viajes = (ListView) findViewById(R.id.lv_viajes);
         lv_viajes.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        Viaje datos[] = new Viaje[3];
-        datos[0] = new Viaje("Colombia", true,"Café");
-        datos[1] = new Viaje("Argentina", false, "Iguazu");
-        datos[2] = new Viaje("Ecuador", false, "Naturalez");
+        //Viaje datos[] = new Viaje[3];
+        //datos[0] = new Viaje("Colombia", true,"Café");
+        //datos[1] = new Viaje("Argentina", false, "Iguazu");
+        //datos[2] = new Viaje("Ecuador", false, "Naturalez");
 
-        AdaptadorViaje av = new AdaptadorViaje(this,datos);
+        List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
+
+        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]));
         lv_viajes.setAdapter(av);
 
 
@@ -50,8 +51,11 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent=new Intent(HomeActivity.this,AdminViaje.class);
+                intent.putExtra("idUsuario",usuario.getId());
+                startActivity(intent);
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
             }
         });
 
@@ -63,6 +67,15 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<Viaje> lstViajes=Viaje.getAllByUseurId(usuario);
+
+        AdaptadorViaje av = new AdaptadorViaje(this,lstViajes.toArray(new Viaje[lstViajes.size()]));
+        lv_viajes.setAdapter(av);
     }
 
     @Override

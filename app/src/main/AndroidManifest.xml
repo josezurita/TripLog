@@ -33,7 +33,9 @@
         <meta-data android:name="AA_DB_VERSION" android:value="5" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="ec.edu.epn.triplog.vo.Usuario"/>
+            android:value="ec.edu.epn.triplog.vo.Usuario,ec.edu.epn.triplog.vo.Comentario,
+            ec.edu.epn.triplog.vo.Equipaje,ec.edu.epn.triplog.vo.Historia,ec.edu.epn.triplog.vo.Recordatorio,
+            ec.edu.epn.triplog.vo.Viaje"/>
     </application>
 
 </manifest>

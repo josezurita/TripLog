@@ -43,6 +43,7 @@ public class UserRegisterActivity extends AppCompatActivity {
         usr.setNombre(edtNombre.getText().toString().trim());
         usr.setEmail(edtEmail.getText().toString().trim());
         usr.setContrasena(edtContrasena.getText().toString().trim());
+        usr.setActivo(true);
         usr.save();
         Toast.makeText(getApplicationContext(), "Registro ingresado", Toast.LENGTH_SHORT).show();
         finish();

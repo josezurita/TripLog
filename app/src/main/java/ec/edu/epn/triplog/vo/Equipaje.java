@@ -28,6 +28,9 @@ public class Equipaje extends Model {
     @Column(name="listo")
     private Boolean listo;
 
+    @Column(name="activo")
+    private boolean activo;
+
     public String getItem() {
         return item;
     }
@@ -44,6 +47,13 @@ public class Equipaje extends Model {
         this.listo = listo;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     public String toString() {
         return item;

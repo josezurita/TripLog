@@ -19,19 +19,26 @@ public class Comentario extends Model {
         this.descripcion = descripcion;
     }
 
-    @Column(name = "descripcion", unique = true)
+    @Column(name = "descripcion")
     private String descripcion;
 
-    public String getdescripcion() {
+    @Column(name="activo")
+    private boolean activo;
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setdescripcion(String descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public static Comentario getBydescripcion(String descripcion){
-        return new Select().from(Comentario.class).where("descripcion = ?",descripcion).executeSingle();
     }
 
     public static Comentario getById(Long id){
@@ -41,6 +48,7 @@ public class Comentario extends Model {
     public static List<Comentario> getAll() {
         return new Select()
                 .from(Comentario.class)
+                .where("activo = ?",true)
                 .execute();
     }
 }
