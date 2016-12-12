@@ -76,5 +76,11 @@ public class Equipaje extends Model {
                 .and("viaje = ? ",viaje.getId())
                 .execute();
     }
+    public static List<Equipaje> getAllEquipaje() {
+        return new Select()
+                .from(Equipaje.class)
+                .where("activo = ?",true)
+                .execute();
+    }
 
 }

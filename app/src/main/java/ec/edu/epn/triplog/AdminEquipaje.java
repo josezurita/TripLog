@@ -28,7 +28,7 @@ public class    AdminEquipaje extends AppCompatActivity {
         viaje= Viaje.getById(getIntent().getLongExtra("idViaje",0));
         lv_equipaje = (ListView) findViewById(R.id.lv_equipaje);
         lv_equipaje.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
+        List<Equipaje> lstEquipajes=Equipaje.getAllEquipaje();
         AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
         lv_equipaje.setAdapter(ua);
     }
