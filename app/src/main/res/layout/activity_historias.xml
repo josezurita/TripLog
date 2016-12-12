@@ -18,6 +18,13 @@
         tools:context="ec.edu.epn.triplog.AdminHistorias">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Historias"/>
+
+        <TextView
             android:id="@+id/tv_lugarH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

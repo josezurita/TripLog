@@ -110,9 +110,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.perfil) {
-            // Handle the camera action
+            Intent intent = new Intent(this, UserRegisterActivity.class);
+            intent.putExtra("idUsuario",usuario.getId());
+            startActivity(intent);
         } else if (id == R.id.misViajes) {
             Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("idUsuario",usuario.getId());
             startActivity(intent);
 
         } else if (id == R.id.favoritos) {

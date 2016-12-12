@@ -14,10 +14,10 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ec.edu.epn.triplog.AdminEquipaje;
+import ec.edu.epn.triplog.AdminHistorias;
 import ec.edu.epn.triplog.R;
+import ec.edu.epn.triplog.RegHistorias;
 import ec.edu.epn.triplog.vo.Historia;
-import ec.edu.epn.triplog.vo.Viaje;
 
 /**
  * Created by ASUS R454LA on 11/12/2016.
@@ -26,10 +26,13 @@ import ec.edu.epn.triplog.vo.Viaje;
 public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuItemClickListener {
 
     private Historia[] historia;
+    private Historia hist;
+    AdminHistorias adminHistorias;
 
-    public AdaptadorHistoria(Context context, Historia[] historia) {
+    public AdaptadorHistoria(Context context, Historia[] historia, AdminHistorias adminHistorias) {
         super(context, android.R.layout.simple_expandable_list_item_1, historia);
         this.historia = historia;
+        this.adminHistorias=adminHistorias;
     }
 
     @NonNull
@@ -53,6 +56,7 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
         ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hist=historia[position];
                 PopupMenu popup = new PopupMenu(getContext(),view);
                 popup.setOnMenuItemClickListener(AdaptadorHistoria.this);
                 MenuInflater inflater = popup.getMenuInflater();
@@ -70,13 +74,17 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.action_editar_equipaje:
-                //Intent intent=new Intent(getContext(),AdminEquipaje.class);
-                //intent.putExtra("idViaje",vi.getId());
-                //getContext().startActivity(intent);
-                Toast.makeText(getContext(),"Editar equipaje",Toast.LENGTH_LONG).show();
+                Intent intent1= new Intent(getContext(),RegHistorias.class);
+                intent1.putExtra("idHistoria", hist.getId());
+                getContext().startActivity(intent1);
+                Toast.makeText(getContext(),"Editar",Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_eliminar_equipaje:
-                Toast.makeText(getContext(),"Eliminar equipaje",Toast.LENGTH_LONG).show();
+                hist.setActivo(false);
+                hist.save();
+                Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+                this.notifyDataSetChanged();
+                adminHistorias.actualizarHistorias();
                 return true;
             default:
                 return false;

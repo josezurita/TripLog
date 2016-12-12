@@ -14,6 +14,7 @@ public class UserRegisterActivity extends AppCompatActivity {
     private EditText edtNombre;
     private EditText edtEmail;
     private EditText edtContrasena;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,13 @@ public class UserRegisterActivity extends AppCompatActivity {
         edtNombre=(EditText)findViewById(R.id.edtNombre);
         edtEmail=(EditText)findViewById(R.id.edtEmail);
         edtContrasena=(EditText)findViewById(R.id.edtClave);
+        usuario=Usuario.getById(getIntent().getLongExtra("idUsuario",0));
+        if(usuario!=null){
+            edtUsuario.setText(usuario.getUsuario());
+            edtNombre.setText(usuario.getNombre());
+            edtEmail.setText(usuario.getEmail());
+            edtContrasena.setText(usuario.getContrasena());
+        }
     }
 
     public void guardarUsuario(View v){
@@ -38,7 +46,11 @@ public class UserRegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Usuario ya existe", Toast.LENGTH_SHORT).show();
             return;
         }
-        usr=new Usuario();
+        if(usuario==null){
+            usr=new Usuario();
+        }else {
+            usr = usuario;
+        }
         usr.setUsuario(edtUsuario.getText().toString().trim());
         usr.setNombre(edtNombre.getText().toString().trim());
         usr.setEmail(edtEmail.getText().toString().trim());

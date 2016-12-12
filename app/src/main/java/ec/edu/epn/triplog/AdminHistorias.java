@@ -1,19 +1,16 @@
 package ec.edu.epn.triplog;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
 
 import java.util.List;
 
 import ec.edu.epn.triplog.Adaptadores.AdaptadorHistoria;
-import ec.edu.epn.triplog.Adaptadores.AdaptadorViaje;
 import ec.edu.epn.triplog.vo.Historia;
 import ec.edu.epn.triplog.vo.Viaje;
-
-import static ec.edu.epn.triplog.R.id.lv_historias;
 
 public class AdminHistorias extends AppCompatActivity  {
 
@@ -32,7 +29,7 @@ public class AdminHistorias extends AppCompatActivity  {
 
         List<Historia> lstHistorias=Historia.getAll(viaje);
         System.out.println(lstHistorias.size());
-        AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]));
+        AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]),this);
         lv_historias.setAdapter(av);
     }
 
@@ -41,7 +38,7 @@ public class AdminHistorias extends AppCompatActivity  {
         super.onResume();
         List<Historia> lstHistorias=Historia.getAll(viaje);
 
-        AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]));
+        AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]),this);
         lv_historias.setAdapter(av);
     }
 
@@ -50,6 +47,13 @@ public class AdminHistorias extends AppCompatActivity  {
         Intent intent=new Intent(getApplicationContext(),RegHistorias.class);
         intent.putExtra("idViaje",viaje.getId());
         startActivity(intent);
+    }
+
+    public void actualizarHistorias(){
+        List<Historia> lstHistorias=Historia.getAll(viaje);
+
+        AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]),this);
+        lv_historias.setAdapter(av);
     }
 
 
