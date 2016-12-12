@@ -8,6 +8,7 @@ import android.media.Image;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,7 +17,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.os.Bundle;
 
+import ec.edu.epn.triplog.AdminEquipaje;
+import ec.edu.epn.triplog.HomeActivity;
 import ec.edu.epn.triplog.LoginActivity;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.UserRegisterActivity;
@@ -27,7 +32,7 @@ import ec.edu.epn.triplog.vo.Viaje;
  * Created by ASUS R454LA on 11/12/2016.
  */
 
-public class AdaptadorViaje extends ArrayAdapter {
+public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItemClickListener{
 
     private Viaje[] viaje;
 
@@ -72,6 +77,7 @@ public class AdaptadorViaje extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 PopupMenu popup = new PopupMenu(getContext(),view);
+                popup.setOnMenuItemClickListener(AdaptadorViaje.this);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.menu_lv_viaje,popup.getMenu());
                 popup.show();
@@ -82,4 +88,23 @@ public class AdaptadorViaje extends ArrayAdapter {
 
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.action_equipaje:
+                Intent intent=new Intent(getContext(),AdminEquipaje.class);
+                //startActivity(intent);
+                Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
+                System.out.println("Ingresa a ver equipaje");
+                return true;
+            case R.id.action_editar_viaje:
+                Toast.makeText(getContext(),"Editar viaje",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_eliminar_viaje:
+                Toast.makeText(getContext(),"Eliminar viaje",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return false;
+        }
+    }
 }
