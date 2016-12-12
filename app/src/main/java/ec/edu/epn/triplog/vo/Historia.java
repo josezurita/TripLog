@@ -21,6 +21,7 @@ public class Historia extends Model {
         this.imagen = imagen;
     }
 
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -32,6 +33,9 @@ public class Historia extends Model {
 
     @Column(name="activo")
     private boolean activo;
+
+    @Column(name="viaje")
+    private Viaje viaje;
 
     public String getNombre() {
         return nombre;
@@ -65,6 +69,14 @@ public class Historia extends Model {
         this.activo = activo;
     }
 
+    public Viaje getViaje() {
+        return viaje;
+    }
+
+    public void setViaje(Viaje viaje) {
+        this.viaje = viaje;
+    }
+
     public static Historia getBynombre(String nombre){
         return new Select().from(Historia.class).where("nombre = ?",nombre).executeSingle();
     }
@@ -73,6 +85,13 @@ public class Historia extends Model {
         return new Select().from(Historia.class).where("Id = ?",id).executeSingle();
     }
 
+    public static List<Historia> getAll(Viaje v) {
+        return new Select()
+                .from(Historia.class)
+                .where("viaje = ?",v.getId())
+                .and("activo = ?",true)
+                .execute();
+    }
     public static List<Historia> getAll() {
         return new Select()
                 .from(Historia.class)

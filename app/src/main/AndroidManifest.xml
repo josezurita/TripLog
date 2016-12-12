@@ -24,18 +24,25 @@
         <activity
             android:name=".WishList"
             android:label="@string/title_activity_wish_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminEquipaje" />
         <activity android:name=".AdminRecordatorio" />
         <activity android:name=".AdminViaje" />
-        <activity android:name=".Perfil"></activity>
-        <meta-data android:name="AA_DB_NAME" android:value="triplog.db" />
-        <meta-data android:name="AA_DB_VERSION" android:value="5" />
+        <activity android:name=".Perfil" />
+
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="triplog.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="5" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="ec.edu.epn.triplog.vo.Usuario,ec.edu.epn.triplog.vo.Comentario,
-            ec.edu.epn.triplog.vo.Equipaje,ec.edu.epn.triplog.vo.Historia,ec.edu.epn.triplog.vo.Recordatorio,
-            ec.edu.epn.triplog.vo.Viaje"/>
+            android:value="ec.edu.epn.triplog.vo.Usuario,ec.edu.epn.triplog.vo.Comentario,             ec.edu.epn.triplog.vo.Equipaje,ec.edu.epn.triplog.vo.Historia,ec.edu.epn.triplog.vo.Recordatorio,             ec.edu.epn.triplog.vo.Viaje" />
+
+        <activity android:name=".AdminHistorias" />
+        <activity android:name=".RegHistorias" />
+        <activity android:name=".Feedback"></activity>
     </application>
 
 </manifest>

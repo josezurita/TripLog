@@ -135,7 +135,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.configuracion) {
 
         } else if (id == R.id.feedback) {
-
+            Intent intent = new Intent(this, Feedback.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

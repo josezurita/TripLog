@@ -9,16 +9,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_equipaje"
+        android:layout_weight="11"
         />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cb_equipaje"
-        android:onClick="cb_clic"/>
+        android:layout_weight="1"
+        />
     <ImageView
         android:id="@+id/iv_popup_equipaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:src="@drawable/ic_more"/>
 
 </LinearLayout>

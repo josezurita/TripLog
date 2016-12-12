@@ -15,10 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ec.edu.epn.triplog.AdminEquipaje;
+import ec.edu.epn.triplog.AdminHistorias;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.vo.Viaje;
-
-import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by ASUS R454LA on 11/12/2016.
@@ -27,6 +26,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItemClickListener{
 
     private Viaje[] viaje;
+    private Viaje vi;
 
 
     public AdaptadorViaje(Context context, Viaje[] viaje) {
@@ -37,6 +37,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        vi = viaje[position];
         //converView representa toda la fila del item
         if (convertView == null) {
             LayoutInflater li = LayoutInflater.from(getContext());
@@ -44,6 +45,14 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         }
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv_lugarViaje);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(),AdminHistorias.class);
+                intent.putExtra("idViaje",vi.getId());
+                getContext().startActivity(intent);
+            }
+        });
         //Image img= (Image)convertView.findViewById(R.id.img_viaje);
         final ImageView iv=(ImageView)convertView.findViewById(R.id.iv_favorito);
         TextView tv1 = (TextView) convertView.findViewById(R.id.tv_descViaje);
@@ -76,6 +85,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 PopupMenu popup = new PopupMenu(getContext(),view);
                 popup.setOnMenuItemClickListener(AdaptadorViaje.this);
                 MenuInflater inflater = popup.getMenuInflater();
@@ -88,13 +98,16 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
 
     }
 
+    public void abrirHistorias(View v){
+
+    }
+
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
-        Viaje viaje = new Viaje();
         switch (menuItem.getItemId()){
             case R.id.action_equipaje:
                 Intent intent=new Intent(getContext(),AdminEquipaje.class);
-                intent.putExtra("idViaje",viaje.getId());
+                intent.putExtra("idViaje",vi.getId());
                 getContext().startActivity(intent);
                 Toast.makeText(getContext(),"Abrir equipaje",Toast.LENGTH_LONG).show();
                 System.out.println("Ingresa a ver equipaje");

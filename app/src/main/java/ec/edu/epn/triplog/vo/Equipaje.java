@@ -34,7 +34,7 @@ public class Equipaje extends Model {
     @Column(name="activo")
     private boolean activo;
 
-    @Column(name="fk_viaje")
+    @Column(name="viaje")
     private Viaje viaje;
 
     public String getItem() {
@@ -70,6 +70,7 @@ public class Equipaje extends Model {
     }
 
     public static List<Equipaje> getAllByViajeId(Viaje viaje) {
+        System.out.println(viaje.getNombre());
         return new Select()
                 .from(Equipaje.class)
                 .where("activo = ?",true)

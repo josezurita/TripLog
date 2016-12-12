@@ -39,13 +39,15 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_items"/>
+                android:hint="@string/hint_items"
+                android:id="@+id/et_nombreEquipaje" />
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/img_mas"
                 android:id="@+id/ibmBtn_agregar"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:onClick="guardarEquipaje"/>
         </LinearLayout>
 
     </LinearLayout>
