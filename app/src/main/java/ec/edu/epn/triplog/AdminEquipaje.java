@@ -1,22 +1,20 @@
 package ec.edu.epn.triplog;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
-import ec.edu.epn.triplog.Adaptadores.AdaptadorEquipaje;
+import java.util.HashMap;
+
 import ec.edu.epn.triplog.vo.Equipaje;
-import ec.edu.epn.triplog.vo.Usuario;
 import ec.edu.epn.triplog.vo.Viaje;
 
 public class    AdminEquipaje extends AppCompatActivity {
@@ -32,9 +30,9 @@ public class    AdminEquipaje extends AppCompatActivity {
         lv_equipaje = (ListView) findViewById(R.id.lv_equipaje);
         lv_equipaje.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         tv_equipaje=(TextView)findViewById(R.id.et_nombreEquipaje);
-        List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
-        AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
-        lv_equipaje.setAdapter(ua);
+        //List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
+        //AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
+        //lv_equipaje.setAdapter(ua);
     }
     public void onListItemClick(ListView parent, View v, int position, long id) {
         CheckedTextView item = (CheckedTextView) v;
@@ -52,12 +50,30 @@ public class    AdminEquipaje extends AppCompatActivity {
         equip.setItem(tv_equipaje.getText().toString().trim());
         equip.setListo(false);
         equip.setViaje(viaje);
-        equip.save();
+        //equip.save();
+        new EquipajeAsync().execute(new Equipaje[]{equip});
         tv_equipaje.setText("");
         Toast.makeText(getApplicationContext(), "Equipaje ingresado", Toast.LENGTH_SHORT).show();
-        List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
-        AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
-        lv_equipaje.setAdapter(ua);
+        //List<Equipaje> lstEquipajes=Equipaje.getAllByViajeId(viaje);
+        //AdaptadorEquipaje ua = new AdaptadorEquipaje(this,lstEquipajes.toArray(new Equipaje[lstEquipajes.size()]));
+        //lv_equipaje.setAdapter(ua);
+    }
+
+    public class EquipajeAsync extends AsyncTask<Equipaje,Void,String> {
+        @Override
+        protected String doInBackground(Equipaje... equipajes) {
+            final String url="http://172.29.33.106:8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}";
+            RestTemplate restTemplate=new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String,Object> valores=new HashMap<>();
+            valores.put("var1",equipajes[0].getItem());
+            return restTemplate.getForObject(url,String.class,valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
