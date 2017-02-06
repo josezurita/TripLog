@@ -62,7 +62,8 @@ public class    AdminEquipaje extends AppCompatActivity {
     public class EquipajeAsync extends AsyncTask<Equipaje,Void,String> {
         @Override
         protected String doInBackground(Equipaje... equipajes) {
-            final String url="http://172.29.33.106:8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}";
+            final String url="http://172.29.33.106:8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}" +
+                    "";
             RestTemplate restTemplate=new RestTemplate();
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
             HashMap<String,Object> valores=new HashMap<>();
