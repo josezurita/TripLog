@@ -42,7 +42,7 @@ public class AdminEquipaje {
         try {
 
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, "root");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
             PreparedStatement ps = con.prepareStatement("insert into equipaje (item,listo,activo) values (?,?,?)");
             ps.setString(1, item);
             ps.setBoolean(2, false);
@@ -65,7 +65,7 @@ public class AdminEquipaje {
         try {
 
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, "root");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
             PreparedStatement ps = con.prepareStatement("select * from equipaje");
             ResultSet rs = ps.executeQuery();
 
@@ -94,7 +94,7 @@ public class AdminEquipaje {
         try {
 
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, "root");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
             PreparedStatement ps = con.prepareStatement("update equipaje set activo=false where idhistoria=?");
             ps.setInt(1, idEquipaje);
             ps.executeQuery();
@@ -113,7 +113,7 @@ public class AdminEquipaje {
             String resultado = "";
 
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, "root");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
             PreparedStatement ps = con.prepareStatement("select * from equipaje where idhistoria=?");
             ps.setInt(1, idEquipaje);
             ResultSet rs = ps.executeQuery();
