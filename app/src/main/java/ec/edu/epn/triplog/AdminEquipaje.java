@@ -20,6 +20,7 @@ import ec.edu.epn.triplog.vo.Viaje;
 public class    AdminEquipaje extends AppCompatActivity {
     private ListView lv_equipaje;
     private TextView tv_equipaje;
+
     Equipaje datos[] = new Equipaje[3];
     private Viaje viaje;
     @Override
