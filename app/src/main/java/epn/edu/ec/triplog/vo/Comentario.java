@@ -1,7 +1,5 @@
 package epn.edu.ec.triplog.vo;
 
-import java.util.List;
-
 public class Comentario {
 
     public Comentario(String contrasena, String descripcion, String nombre, String email) {
@@ -13,6 +11,8 @@ public class Comentario {
     private Usuario usuario;
 
     private boolean activo;
+
+    private Integer idComentario;
 
     public boolean isActivo() {
         return activo;
@@ -38,4 +38,11 @@ public class Comentario {
         this.usuario = usuario;
     }
 
+    public Integer getIdComentario() {
+        return idComentario;
+    }
+
+    public void setIdComentario(Integer idComentario) {
+        this.idComentario = idComentario;
+    }
 }

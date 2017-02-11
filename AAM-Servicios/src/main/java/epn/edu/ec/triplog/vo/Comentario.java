@@ -7,6 +7,8 @@ public class Comentario {
     public Comentario(String contrasena, String descripcion, String nombre, String email) {
         this.descripcion = descripcion;
     }
+    
+    private Integer idComentario;
 
     private String descripcion;
 
@@ -38,4 +40,11 @@ public class Comentario {
         this.usuario = usuario;
     }
 
+    public Integer getIdComentario() {
+        return idComentario;
+    }
+
+    public void setIdComentario(Integer idComentario) {
+        this.idComentario = idComentario;
+    }
 }
