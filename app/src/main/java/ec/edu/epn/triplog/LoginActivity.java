@@ -1,12 +1,16 @@
 package ec.edu.epn.triplog;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import ec.edu.epn.triplog.vo.Usuario;
 
@@ -25,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin=(Button)findViewById(R.id.login);
         edtUsuario=(EditText)findViewById(R.id.username);
         edtContrasena=(EditText)findViewById(R.id.password);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +61,26 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,UserRegisterActivity.class);
-                startActivity(intent);
+                new PruebaRest().execute("hola");
+                /*Intent intent=new Intent(LoginActivity.this,UserRegisterActivity.class);
+                startActivity(intent);*/
             }
         });
+    }
+
+    public class PruebaRest extends AsyncTask<String,Void,String>{
+        @Override
+        protected String doInBackground(String... strings) {
+            final String url="http://172.29.12.122:8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/prueba?texto={var1}";
+            RestTemplate restTemplate=new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            String resultado=restTemplate.getForObject(url,String.class,strings[0]);
+            return "prueba realilzada"+resultado;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            edtUsuario.setText(s);
+        }
     }
 }

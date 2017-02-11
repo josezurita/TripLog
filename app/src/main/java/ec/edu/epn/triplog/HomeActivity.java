@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,11 +26,17 @@ public class HomeActivity extends AppCompatActivity
     Viaje datos[] = new Viaje[3];
     ListView lv_viajes;
     private Usuario usuario;
+    private TextView txvNombreUsuario;
+    private TextView txvEmailUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         usuario=Usuario.getById(getIntent().getLongExtra("idUsuario",0));
+        txvNombreUsuario =(TextView) findViewById(R.id.txvNombreUsuario);
+        txvEmailUsuario =(TextView) findViewById(R.id.txvEmailUsuario);
+
 
         lv_viajes = (ListView) findViewById(R.id.lv_viajes);
         lv_viajes.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
