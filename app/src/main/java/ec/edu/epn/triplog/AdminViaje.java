@@ -1,5 +1,6 @@
 package ec.edu.epn.triplog;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,8 +8,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+
+import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
 import ec.edu.epn.triplog.vo.Usuario;
 import ec.edu.epn.triplog.vo.Viaje;
+
+import static ec.edu.epn.triplog.R.id.edtUsuario;
 
 public class AdminViaje extends AppCompatActivity {
 
@@ -37,6 +46,8 @@ public class AdminViaje extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
             return;
         }
+      //  new AdminViajeAsyn.execute(edtUsuario.getText().toString());
+        /*
         if(viaje==null){
             viaje=new Viaje();
             viaje.setUsuario(usuario);
@@ -50,6 +61,33 @@ public class AdminViaje extends AppCompatActivity {
         viaje.save();
         Toast.makeText(getApplicationContext(), "Registro ingresado", Toast.LENGTH_SHORT).show();
         finish();
+        */
+    }
+
+    public class ViajeRegisterAsync extends AsyncTask<epn.edu.ec.triplog.vo.Viaje,Void,String> {
+        @Override
+        protected String doInBackground(epn.edu.ec.triplog.vo.Viaje... viajes) {
+
+            epn.edu.ec.triplog.vo.Viaje viaje=viajes[0];
+            final String url="http://"+ VariblesGlobales.IP+":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
+                    "insertar?lugarViaje={var1}&descripcionViaje={var2}&favoritoViaje={var3}&activo={var4}&usuario={var5}";
+            RestTemplate restTemplate=new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String,Object> valores=new HashMap<>();
+            valores.put("var1",viaje.getLugarViaje());
+            valores.put("var2",viaje.getDescripcionViaje());
+            valores.put("var3",viaje.isFavoritoViaje());
+            valores.put("var4",viaje.isActivo());
+            valores.put("var5",viaje.getUsuario());
+            return restTemplate.getForObject(url,String.class,valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext(), "Registro ingresado", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
 }
+

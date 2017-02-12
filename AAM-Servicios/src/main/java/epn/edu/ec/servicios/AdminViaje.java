@@ -17,6 +17,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import epn.edu.ec.triplog.vo.Equipaje;
+import epn.edu.ec.triplog.vo.Usuario;
 import epn.edu.ec.utilitarios.VariablesGlobales;
 @Path("AdminViaje")
 public class AdminViaje {
@@ -30,21 +31,25 @@ public class AdminViaje {
 		@Path("insertar")
 		public String insertar(
 				
+				@QueryParam("usuario") int usuario,
 				@QueryParam("lugarViaje") String lugarViaje,
 				@QueryParam("descripcionViaje") String descripcionViaje,
 				@QueryParam("favoritoViaje") Boolean favoritoViaje,
 				@QueryParam("activo") Boolean activo){
 			try {
+				
+				
 				Class.forName("org.postgresql.Driver");
 				Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog",VariablesGlobales.USUARIO,VariablesGlobales.CLAVE);
 				System.out.println("Conexión exitosa");
 				
 				PreparedStatement ps = (PreparedStatement) con.prepareStatement(
-						"insert into viaje (lugar, descripcion, favorito,activo) values(?,?,?,?)");
-				ps.setString(1, lugarViaje);
-				ps.setString(2, descripcionViaje);
-				ps.setBoolean(3, favoritoViaje);
-				ps.setBoolean(4, activo);
+						"insert into viaje (idusuario, lugar, descripcion, favorito,activo) values(?,?,?,?)");
+				ps.setInt(1, usuario);
+				ps.setString(2, lugarViaje);
+				ps.setString(3, descripcionViaje);
+				ps.setBoolean(4, favoritoViaje);
+				ps.setBoolean(5, activo);
 				ps.executeUpdate();
 				ps.close();
 				con.close();
@@ -106,6 +111,41 @@ public class AdminViaje {
 
 	            while (rs.next()) {
 	                Viaje v = new Viaje();
+	                v.setIdViaje(rs.getInt("idviaje"));
+	                v.setLugarViaje(rs.getString("lugar"));
+	                v.setActivo(rs.getBoolean("activo"));
+	                v.setActivo(rs.getBoolean("favorito"));
+	                //e.setViaje(new Viaje());
+
+	                viajes.add(v);
+	            }
+
+	            ps.close();
+	            con.close();
+	        } catch (ClassNotFoundException | SQLException ex) {
+	            Logger.getLogger(AdminViaje.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        return viajes;
+	    }
+	  @GET
+	    @Path("consultarPorIdUsuario")
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public List<Viaje> consultarPorIdUsuario(@QueryParam("idUsuario") Integer idUsuario) {
+	        List<Viaje> viajes = new ArrayList<>();
+	        try {
+	        	
+	            Class.forName("org.postgresql.Driver");
+	            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+	            PreparedStatement ps = con.prepareStatement("select * from viaje where idUsuario=?");
+	            ps.setInt(1, idUsuario);
+	            ResultSet rs = ps.executeQuery();
+	            
+	            
+	            while (rs.next()) {
+	            	Usuario usr=new Usuario();
+	            	usr.setIdUsuario(rs.getInt("idusuario"));
+	                Viaje v = new Viaje();
+	                v.setUsuario(usr);
 	                v.setIdViaje(rs.getInt("idviaje"));
 	                v.setLugarViaje(rs.getString("lugar"));
 	                v.setActivo(rs.getBoolean("activo"));
