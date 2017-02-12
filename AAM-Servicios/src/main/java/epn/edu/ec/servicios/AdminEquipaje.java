@@ -53,7 +53,7 @@ public class AdminEquipaje {
             return "registro ingresado";
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
-            return "error";
+              return "error";
         }
     }
 

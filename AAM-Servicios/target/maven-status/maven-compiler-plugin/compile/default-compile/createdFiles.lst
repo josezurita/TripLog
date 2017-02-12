@@ -1,2 +1,10 @@
+epn\edu\ec\servicios\AdminUsuario.class
+epn\edu\ec\triplog\vo\Equipaje.class
+epn\edu\ec\triplog\vo\Comentario.class
+epn\edu\ec\triplog\vo\Recordatorio.class
+epn\edu\ec\triplog\vo\Viaje.class
 epn\edu\ec\servicios\AdminEquipaje.class
 epn\edu\ec\servicios\AppREST.class
+epn\edu\ec\triplog\vo\Historia.class
+epn\edu\ec\utilitarios\VariablesGlobales.class
+epn\edu\ec\triplog\vo\Usuario.class
