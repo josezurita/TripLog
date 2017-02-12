@@ -48,6 +48,7 @@
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
     <string name="equipaje">Ver equipaje</string>
+    <string name="feedbackDesciption">Escriba un comentario sobre TripLog</string>
 
     <string-array name="equipaje">
         <item>Cámara</item>
