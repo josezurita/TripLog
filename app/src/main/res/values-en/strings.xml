@@ -54,7 +54,7 @@
     <string name="txtEquipaje">luggage</string>
     <string name="nombre">Name</string>
     <string name="email">Email</string>
-    <string-array name="Countries">
+    <string-array name="Paises">
         <item>Ecuator</item>
         <item>Columbia</item>
         <item>Peru</item>
