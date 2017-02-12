@@ -42,6 +42,8 @@
     <string name="tv_imagenes">Pictures</string>
     <string name="tv_nombre">Destination</string>
     <string name="tv_pais">Country</string>
-    <string name="feedbackDesciption">Escriba un comentario sobre TripLog</string>
-    <string name="historias">Historias</string>
+    <string name="feedbackDesciption">Write a feedback about TripLog</string>
+    <string name="historias">Stories</string>
+    <string name="lugar">Place</string>
+    <string name="iniciarSesion">Log In</string>
 </resources>
