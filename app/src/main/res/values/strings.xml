@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">TripLog</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Abrir navegación</string>
+    <string name="navigation_drawer_close">Cerrar navegación</string>
     <string name="myTrips">Mis Viajes</string>
     <string name="listaDeseos">Lista de deseos</string>
     <string name="myProfile">Perfil</string>
@@ -9,7 +9,7 @@
     <string name="share">Compartir</string>
     <string name="communicate">Contacto</string>
     <string name="aboutUs">Acerca de</string>
-    <string name="feedback">Give us a feedback</string>
+    <string name="feedback">Danos un comentario</string>
     <string name="title_activity_wish_list">Lista de deseos</string>
     <string name="favorites">Favoritos</string>
 
@@ -17,7 +17,7 @@
     <string name="tv_nombre">Destino</string>
     <string name="hint_nombre">Ingrese el destino de su viaje</string>
     <string name="tv_fechaInicio">Fecha de Inicio</string>
-    <string name="hint_fechaInicio">Seleccione la fecha de inicio del viaje</string>
+    <string name="hint_fechaInicio">Seleccione la fecha de fin del viaje</string>
     <string name="tv_fechaFin">Fecha de Fin</string>
     <string name="hint_fechaFin">Seleccione la fecha de fin del viaje</string>
     <string name="tv_pais">País</string>
@@ -48,6 +48,7 @@
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
     <string name="equipaje">Ver equipaje</string>
+    <string name="feedbackDesciption">Escriba un comentario sobre TripLog</string>
 
     <string-array name="equipaje">
         <item>Cámara</item>
