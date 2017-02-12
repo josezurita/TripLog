@@ -60,6 +60,14 @@
     </string-array>
     <string name="registro">Registro</string>
     <string name="iniciarSesion">Iniciar Sesión</string>
+    <string name="diarioDeViajes">Diario de Viajes</string>
+    <string name="password">Contraseña</string>
+    <string name="usuario">Usuario</string>
+    <string name="ejemploCorreo" translatable="false">usuario@epn.edu.ec</string>
+    <string name="registroDeUsuarios">Registro de Usuarios</string>
+    <string name="txtEquipaje">equipaje</string>
+    <string name="nombre">Nombre</string>
+    <string name="email">Correo</string>
 
 
 </resources>

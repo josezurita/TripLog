@@ -45,5 +45,20 @@
     <string name="feedbackDesciption">Write a feedback about TripLog</string>
     <string name="historias">Stories</string>
     <string name="lugar">Place</string>
-    <string name="iniciarSesion">Log In</string>
+    <string name="iniciarSesion">Sign in</string>
+    <string name="diarioDeViajes">Travel Diary</string>
+    <string name="registro">Sign up</string>
+    <string name="password">Password</string>
+    <string name="usuario">User</string>
+    <string name="registroDeUsuarios">User\'s Sign up</string>
+    <string name="txtEquipaje">luggage</string>
+    <string name="nombre">Name</string>
+    <string name="email">Email</string>
+    <string-array name="Countries">
+        <item>Ecuator</item>
+        <item>Columbia</item>
+        <item>Peru</item>
+        <item>Brazil</item>
+        <item>Argentina</item>
+    </string-array>
 </resources>
