@@ -44,7 +44,7 @@ public class AdminViaje {
 				System.out.println("Conexión exitosa");
 				
 				PreparedStatement ps = (PreparedStatement) con.prepareStatement(
-						"insert into viaje (idusuario, lugar, descripcion, favorito,activo) values(?,?,?,?)");
+						"insert into viaje (idusuario, lugar, descripcion, favorito,activo) values(?,?,?,?,?)");
 				ps.setInt(1, usuario);
 				ps.setString(2, lugarViaje);
 				ps.setString(3, descripcionViaje);
@@ -138,6 +138,43 @@ public class AdminViaje {
 	            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
 	            PreparedStatement ps = con.prepareStatement("select * from viaje where idUsuario=?");
 	            ps.setInt(1, idUsuario);
+	            ResultSet rs = ps.executeQuery();
+	            
+	            
+	            while (rs.next()) {
+	            	Usuario usr=new Usuario();
+	            	usr.setIdUsuario(rs.getInt("idusuario"));
+	                Viaje v = new Viaje();
+	                v.setUsuario(usr);
+	                v.setIdViaje(rs.getInt("idviaje"));
+	                v.setLugarViaje(rs.getString("lugar"));
+	                v.setActivo(rs.getBoolean("activo"));
+	                v.setActivo(rs.getBoolean("favorito"));
+	                //e.setViaje(new Viaje());
+
+	                viajes.add(v);
+	            }
+
+	            ps.close();
+	            con.close();
+	        } catch (ClassNotFoundException | SQLException ex) {
+	            Logger.getLogger(AdminViaje.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        return viajes;
+	    }
+	  @GET
+	    @Path("consultarPorLugarViaje")
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public List<Viaje> consultarPorLugarViaje(@QueryParam("lugar") String lugar,
+	    		@QueryParam("idUsuario") Integer idUsuario) {
+	        List<Viaje> viajes = new ArrayList<>();
+	        try {
+	        	
+	            Class.forName("org.postgresql.Driver");
+	            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+	            PreparedStatement ps = con.prepareStatement("select * from viaje where lugar=? and idUsuario=?" );
+	            ps.setString(1, lugar);
+	            ps.setInt(2, idUsuario);
 	            ResultSet rs = ps.executeQuery();
 	            
 	            
