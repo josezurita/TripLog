@@ -116,8 +116,12 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 getContext().startActivity(intent);
                 return true;
             case R.id.action_editar_viaje:
+//                vi = viaje[position];
                 Intent intent1= new Intent(getContext(),AdminViaje.class);
                 intent1.putExtra("idViaje", vi.getIdViaje());
+                intent1.putExtra("idUsuario", vi.getUsuario().getIdUsuario());
+                intent1.putExtra("lugarViaje", vi.getLugarViaje());
+                intent1.putExtra("descripcionViaje", vi.getDescripcionViaje());
                 getContext().startActivity(intent1);
                 return true;
             case R.id.action_eliminar_viaje:
