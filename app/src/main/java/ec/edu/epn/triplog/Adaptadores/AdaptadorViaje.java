@@ -2,6 +2,8 @@ package ec.edu.epn.triplog.Adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -14,11 +16,17 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+
 import ec.edu.epn.triplog.AdminEquipaje;
 import ec.edu.epn.triplog.AdminHistorias;
 import ec.edu.epn.triplog.AdminViaje;
 import ec.edu.epn.triplog.HomeActivity;
 import ec.edu.epn.triplog.R;
+import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
 import epn.edu.ec.triplog.vo.Viaje;
 
 /**
@@ -30,6 +38,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
     private Viaje[] viaje;
     private Viaje vi;
     private HomeActivity homeActivity;
+    private int idViaje=0;
 
 
     public AdaptadorViaje(Context context, Viaje[] viaje, HomeActivity homeActivity) {
@@ -49,6 +58,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         }
 
         TextView tv = (TextView) convertView.findViewById(R.id.tv_lugarViaje);
+        TextView tv1 = (TextView) convertView.findViewById(R.id.tv_descViaje);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,11 +70,12 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         });
         //Image img= (Image)convertView.findViewById(R.id.img_viaje);
         final ImageView iv=(ImageView)convertView.findViewById(R.id.iv_favorito);
-        TextView tv1 = (TextView) convertView.findViewById(R.id.tv_descViaje);
+
 
         tv.setText(viaje[position].getLugarViaje());
-
         tv1.setText(viaje[position].getDescripcionViaje());
+
+
 
         if(viaje[position].isFavoritoViaje()){
             iv.setImageResource(R.drawable.ic_favorito);
@@ -117,6 +128,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 return true;
             case R.id.action_editar_viaje:
 //                vi = viaje[position];
+                idViaje=vi.getIdViaje();
                 Intent intent1= new Intent(getContext(),AdminViaje.class);
                 intent1.putExtra("idViaje", vi.getIdViaje());
                 intent1.putExtra("idUsuario", vi.getUsuario().getIdUsuario());
@@ -126,6 +138,9 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 return true;
             case R.id.action_eliminar_viaje:
                 vi.setActivo(false);
+                System.out.print(idViaje);
+
+                new ViajeEliminarAsync().execute(idViaje);
                 //vi.save();
                 Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
                 this.notifyDataSetChanged();
@@ -133,6 +148,27 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 return true;
             default:
                 return false;
+        }
+    }
+
+    public class ViajeEliminarAsync extends AsyncTask<Integer, Void, String> {
+        @Override
+        protected String doInBackground(Integer... idViaje) {
+
+            //String str="UPDATE viaje SET lugar ='holahola', descripcion= 'mrhmrh'WHERE idUsuario = 1 and idViaje=23";
+            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
+                    "eliminarPorId?idViaje={var1}";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String, Object> valores = new HashMap<>();
+            valores.put("var1", idViaje);
+            return restTemplate.getForObject(url,String.class,valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
