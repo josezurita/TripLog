@@ -44,7 +44,7 @@ public class AdminViaje {
 				System.out.println("Conexión exitosa");
 				
 				PreparedStatement ps = (PreparedStatement) con.prepareStatement(
-						"insert into viaje (idusuario, lugar, descripcion, favorito,activo) values(?,?,?,?)");
+						"insert into viaje (idusuario, lugar, descripcion, favorito,activo) values(?,?,?,?,?)");
 				ps.setInt(1, usuario);
 				ps.setString(2, lugarViaje);
 				ps.setString(3, descripcionViaje);
