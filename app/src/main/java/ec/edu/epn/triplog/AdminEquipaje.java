@@ -17,6 +17,8 @@ import java.util.HashMap;
 import ec.edu.epn.triplog.vo.Equipaje;
 import ec.edu.epn.triplog.vo.Viaje;
 
+import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
+
 public class    AdminEquipaje extends AppCompatActivity {
     private ListView lv_equipaje;
     private TextView tv_equipaje;
@@ -63,7 +65,7 @@ public class    AdminEquipaje extends AppCompatActivity {
     public class EquipajeAsync extends AsyncTask<Equipaje,Void,String> {
         @Override
         protected String doInBackground(Equipaje... equipajes) {
-            final String url="http://172.29.33.106:8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}" +
+            final String url="http://"+ VariblesGlobales.IP+":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}" +
                     "";
             RestTemplate restTemplate=new RestTemplate();
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
