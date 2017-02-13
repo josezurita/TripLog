@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView02"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_equipaje"
@@ -15,7 +10,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
 
-        tools:context="com.example.veronica.triplog.AdminEquipaje"
+        tools:context="ec.edu.epn.triplog.AdminEquipaje"
         android:weightSum="1">
 
         <TextView
@@ -51,4 +46,3 @@
         </LinearLayout>
 
     </LinearLayout>
-</ScrollView>

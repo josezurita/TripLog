@@ -5,7 +5,6 @@
  */
 package epn.edu.ec.servicios;
 
-import epn.edu.ec.triplog.vo.Equipaje;
 import epn.edu.ec.triplog.vo.Usuario;
 import epn.edu.ec.utilitarios.*;
 import java.sql.Connection;
@@ -59,7 +58,7 @@ public class AdminUsuario {
     @Path("consultarPorUsuario")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> consultarPorUsuario(@QueryParam("usuario") String usuario) {
-        List<Usuario> equipajes = new ArrayList<>();
+        List<Usuario> usuarios = new ArrayList<>();
         try {
 
             Class.forName("org.postgresql.Driver");
@@ -78,8 +77,8 @@ public class AdminUsuario {
                 u.setContrasena(rs.getString("contrasena"));
                 u.setActivo(rs.getBoolean("activo"));
                 //e.setViaje(new Viaje());
-
-                equipajes.add(u);
+                
+                usuarios.add(u);
             }
 
             ps.close();
@@ -87,38 +86,7 @@ public class AdminUsuario {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return equipajes;
-    }
-
-    @GET
-    @Path("consultar")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Equipaje> consultar() {
-        List<Equipaje> equipajes = new ArrayList<>();
-        try {
-
-            Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://" + VariablesGlobales.IP + ":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("select * from equipaje");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Equipaje e = new Equipaje();
-                e.setIdEquipaje(rs.getInt("idEquipaje"));
-                e.setItem(rs.getString("item"));
-                e.setListo(rs.getBoolean("listo"));
-                e.setActivo(rs.getBoolean("activo"));
-                //e.setViaje(new Viaje());
-
-                equipajes.add(e);
-            }
-
-            ps.close();
-            con.close();
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return equipajes;
+        return usuarios;
     }
 
     @GET
@@ -126,16 +94,22 @@ public class AdminUsuario {
     public String actualizar(@QueryParam("usuario") String usuario,
             @QueryParam("nombre") String nombre,
             @QueryParam("email") String email,
-            @QueryParam("contrasena") String contrasena) {
+            @QueryParam("contrasena") String contrasena,
+            @QueryParam("idUsuario") Integer idUsuario) {
         try {
 
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://" + VariablesGlobales.IP + ":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("update equipaje set activo=false where idhistoria=?");
+            PreparedStatement ps = con.prepareStatement("update usuario set usuario=?,nombre=?,email=?,contrasena=? where idUsuario=?");
             ps.setString(1, usuario);
-            ps.executeQuery();
+            ps.setString(2, nombre);
+            ps.setString(3, email);
+            ps.setString(4, contrasena);
+            ps.setInt(5, idUsuario);
+            ps.executeUpdate();
+            ps.close();
             con.close();
-            return "registro elimindo";
+            return "registro actualizado";
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return "error";
@@ -144,14 +118,14 @@ public class AdminUsuario {
     
     @GET
     @Path("eliminarPorId")
-    public String eliminarPorId(@QueryParam("idEquipaje") Integer idEquipaje) {
+    public String eliminarPorId(@QueryParam("idUsuario") Integer idUsuario) {
         try {
-
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://" + VariablesGlobales.IP + ":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("update equipaje set activo=false where idhistoria=?");
-            ps.setInt(1, idEquipaje);
-            ps.executeQuery();
+            PreparedStatement ps = con.prepareStatement("update usuario set activo=false where idUsuario=?");
+            ps.setInt(1, idUsuario);
+            ps.executeUpdate();
+            ps.close();
             con.close();
             return "registro elimindo";
         } catch (ClassNotFoundException | SQLException ex) {
@@ -159,43 +133,4 @@ public class AdminUsuario {
             return "error";
         }
     }
-
-    @GET
-    @Path("consultarPorId")
-    public String consultarPorIds(@QueryParam("idEquipaje") Integer idEquipaje) {
-        try {
-            String resultado = "";
-
-            Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://" + VariablesGlobales.IP + ":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("select * from equipaje where idhistoria=?");
-            ps.setInt(1, idEquipaje);
-            ResultSet rs = ps.executeQuery();
-
-            List<String[]> equipajes = new ArrayList<>();
-            while (rs.next()) {
-                String[] u = new String[5];
-                u[0] = String.valueOf(rs.getInt("idhistoria"));
-                u[1] = String.valueOf(rs.getString("item"));
-                u[2] = String.valueOf(rs.getBoolean("listo"));
-                u[3] = String.valueOf(rs.getBoolean("activo"));
-                u[4] = String.valueOf(rs.getInt("idviaje"));
-                equipajes.add(u);
-            }
-            for (String[] str : equipajes) {
-                resultado += "[";
-                for (String s : str) {
-                    resultado += s + ", ";
-                }
-                resultado += "]";
-            }
-            ps.close();
-            con.close();
-            return resultado;
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            return "error";
-        }
-    }
-
 }

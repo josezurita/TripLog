@@ -52,7 +52,6 @@ public class AdminViaje extends AppCompatActivity {
     public void guardarViaje(View v) {
         if (edtNombreViaje.getText().toString().isEmpty() || edtDescripcion.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
-            return;
         }
         new ViajeRegisterAsync().execute();
         //  new AdminViajeAsyn.execute(edtUsuario.getText().toString());

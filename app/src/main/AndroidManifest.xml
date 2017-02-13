@@ -31,6 +31,7 @@
         <activity android:name=".AdminRecordatorio" />
         <activity android:name=".AdminViaje" />
         <activity android:name=".Perfil" />
+        <activity android:name=".Menu.BaseActivity"/>
 
         <meta-data
             android:name="AA_DB_NAME"

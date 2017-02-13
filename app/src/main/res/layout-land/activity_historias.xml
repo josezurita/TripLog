@@ -32,7 +32,7 @@
         <ListView
             android:id="@+id/lv_historias"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="191dp"></ListView>
 
         <ImageButton
             android:layout_width="wrap_content"

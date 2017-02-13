@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/login"
         android:layout_marginBottom="25dp"
-        android:text="Registro" />
+        android:text="@string/registro" />
 
     <Button
         android:id="@+id/login"
@@ -21,7 +21,7 @@
         android:layout_above="@+id/register"
         android:layout_alignLeft="@+id/password"
         android:layout_alignRight="@+id/password"
-        android:text="Iniciar Sesión" />
+        android:text="@string/iniciarSesion" />
 
 
 
@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="Diario de Viajes"
+        android:text="@string/diarioDeViajes"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <EditText
@@ -55,7 +55,7 @@
         android:layout_above="@+id/password"
         android:layout_alignLeft="@+id/password"
         android:layout_marginLeft="22dp"
-        android:text="Cotraseña" />
+        android:text="@string/password" />
 
     <EditText
         android:id="@+id/username"
@@ -73,6 +73,6 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/TextView01"
         android:layout_centerVertical="true"
-        android:text="Usuario" />
+        android:text="@string/usuario" />
 
 </RelativeLayout>

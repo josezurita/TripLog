@@ -74,7 +74,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
             public void onClick(View view) {
                 Viaje viajeActual = new Viaje();
                 viajeActual = viaje[position];
-                if (viajeActual.isFavoritoViaje() == true) {
+                if (viajeActual.isFavoritoViaje()) {
                     viajeActual.setFavoritoViaje(false);
                     iv.setImageResource(R.drawable.ic_nofavorito);
                 } else {
