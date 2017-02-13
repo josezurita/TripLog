@@ -88,7 +88,6 @@ public class UserRegisterActivity extends AppCompatActivity {
     public class UserVerifyAsync extends AsyncTask<String,Void,List<Usuario>> {
         @Override
         protected List<Usuario> doInBackground(String... strings) {
-
             final String url="http://"+ VariblesGlobales.IP+":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminUsuario/" +
                     "consultarPorUsuario?usuario={var1}";
             RestTemplate restTemplate=new RestTemplate();
