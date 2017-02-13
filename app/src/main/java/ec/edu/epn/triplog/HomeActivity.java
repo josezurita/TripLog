@@ -122,11 +122,11 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.perfil) {
             Intent intent = new Intent(this, UserRegisterActivity.class);
-            intent.putExtra("idUsuario",usuario.getIdUsuario());
+            intent.putExtra("usuario",usuario.getUsuario());
             startActivity(intent);
         } else if (id == R.id.misViajes) {
             Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra("idUsuario",usuario.getIdUsuario());
+            intent.putExtra("usuario",usuario.getUsuario());
             startActivity(intent);
 
         } else if (id == R.id.favoritos) {
