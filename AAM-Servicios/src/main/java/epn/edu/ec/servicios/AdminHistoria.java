@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import epn.edu.ec.triplog.vo.Historia;
 import epn.edu.ec.utilitarios.VariablesGlobales;
 
-@Path("AdminComentario")
+@Path("AdminHistoria")
 public class AdminHistoria {
 	
 	@POST
