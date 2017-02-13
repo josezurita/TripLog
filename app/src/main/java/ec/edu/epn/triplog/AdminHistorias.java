@@ -41,21 +41,15 @@ public class AdminHistorias extends AppCompatActivity  {
         AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]),this);
         lv_historias.setAdapter(av);
     }
-
-
     public void abrirRegistroHistoria(View v){
         Intent intent=new Intent(getApplicationContext(),RegHistorias.class);
         intent.putExtra("idViaje",viaje.getId());
         startActivity(intent);
     }
-
     public void actualizarHistorias(){
         List<Historia> lstHistorias=Historia.getAll(viaje);
 
         AdaptadorHistoria av = new AdaptadorHistoria(this,lstHistorias.toArray(new Historia[lstHistorias.size()]),this);
         lv_historias.setAdapter(av);
     }
-
-
-
 }

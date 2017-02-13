@@ -80,8 +80,9 @@ public class AdminViaje {
 	                Viaje v = new Viaje();
 	                v.setIdViaje(rs.getInt("idviaje"));
 	                v.setLugarViaje(rs.getString("lugar"));
+	                v.setDescripcionViaje(rs.getString("descripcion"));
 	                v.setActivo(rs.getBoolean("activo"));
-	                v.setActivo(rs.getBoolean("favorito"));
+	                v.setFavoritoViaje(rs.getBoolean("favorito"));
 	                //e.setViaje(new Viaje());
 
 	                viajes.add(v);
@@ -113,8 +114,9 @@ public class AdminViaje {
 	                Viaje v = new Viaje();
 	                v.setIdViaje(rs.getInt("idviaje"));
 	                v.setLugarViaje(rs.getString("lugar"));
+	                v.setDescripcionViaje(rs.getString("descripcion"));
 	                v.setActivo(rs.getBoolean("activo"));
-	                v.setActivo(rs.getBoolean("favorito"));
+	                v.setFavoritoViaje(rs.getBoolean("favorito"));
 	                //e.setViaje(new Viaje());
 
 	                viajes.add(v);
@@ -136,7 +138,7 @@ public class AdminViaje {
 	        	
 	            Class.forName("org.postgresql.Driver");
 	            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-	            PreparedStatement ps = con.prepareStatement("select * from viaje where idUsuario=?");
+	            PreparedStatement ps = con.prepareStatement("select * from viaje where idUsuario=? and activo=true");
 	            ps.setInt(1, idUsuario);
 	            ResultSet rs = ps.executeQuery();
 	            
@@ -148,8 +150,9 @@ public class AdminViaje {
 	                v.setUsuario(usr);
 	                v.setIdViaje(rs.getInt("idviaje"));
 	                v.setLugarViaje(rs.getString("lugar"));
+	                v.setDescripcionViaje(rs.getString("descripcion"));
 	                v.setActivo(rs.getBoolean("activo"));
-	                v.setActivo(rs.getBoolean("favorito"));
+	                v.setFavoritoViaje(rs.getBoolean("favorito"));
 	                //e.setViaje(new Viaje());
 
 	                viajes.add(v);
@@ -217,4 +220,41 @@ public class AdminViaje {
 	            return "error";
 	        }
 	    }	  
+
+
+@GET
+@Path("modificar")
+public String modificar(
+		
+		@QueryParam("usuario") int usuario,
+		@QueryParam("lugarViaje") String lugarViaje,
+		@QueryParam("descripcionViaje") String descripcionViaje,
+		@QueryParam("idViaje") int idViaje){
+	try {
+				
+		Class.forName("org.postgresql.Driver");
+		Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog",VariablesGlobales.USUARIO,VariablesGlobales.CLAVE);
+		System.out.println("Conexión exitosa");
+		
+		PreparedStatement ps = (PreparedStatement) con.prepareStatement(
+				"UPDATE viaje SET lugar =?, descripcion= ? WHERE idUsuario =?  and idViaje=?");
+		
+		ps.setString(1, lugarViaje);
+		ps.setString(2, descripcionViaje);
+		ps.setInt(3, usuario);
+		ps.setInt(4, idViaje);
+		
+		ps.executeUpdate();
+		ps.close();
+		con.close();
+
+	return "viaje modificado con éxito";
+
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+		return "Error";
+	}
+	
+}
 }
