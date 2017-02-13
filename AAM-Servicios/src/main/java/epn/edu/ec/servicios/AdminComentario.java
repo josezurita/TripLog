@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import epn.edu.ec.utilitarios.VariablesGlobales;
 
-
 @Path("AdminComentario")
 public class AdminComentario {
 	
