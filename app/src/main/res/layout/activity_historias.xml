@@ -35,11 +35,13 @@
             android:layout_height="wrap_content"></ListView>
 
         <ImageButton
+            android:id="@+id/imgBtnAddHistoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:onClick="abrirRegistroHistoria"
             android:src="@drawable/img_mas" />
+            <!--android:onClick="abrirRegistroHistoria"-->
+
 
     </LinearLayout>
 </ScrollView>
