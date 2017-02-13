@@ -22,7 +22,7 @@ import epn.edu.ec.utilitarios.VariablesGlobales;
 @Path("AdminHistoria")
 public class AdminHistoria {
 	
-	@POST
+	@GET
     @Path("insertar")
     public String insertar(@QueryParam("nombre") String nombre, @QueryParam("descripcion") String descripcion, @QueryParam("idViaje") int idViaje) {
         try {
@@ -109,7 +109,7 @@ public class AdminHistoria {
         }
         return historias;
     }
-    @POST
+    @GET
     @Path("eliminarPorId")
     public String eliminarPorId(@QueryParam("idHistoria") Integer idHistoria) {
         try {
