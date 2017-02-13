@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-            intent.putExtra("idUsuario",u.getIdUsuario());
+            intent.putExtra("usuario",u.getUsuario());
             startActivity(intent);
         }
     }

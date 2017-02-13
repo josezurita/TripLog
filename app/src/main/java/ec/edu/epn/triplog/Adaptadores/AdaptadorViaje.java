@@ -19,7 +19,7 @@ import ec.edu.epn.triplog.AdminHistorias;
 import ec.edu.epn.triplog.AdminViaje;
 import ec.edu.epn.triplog.HomeActivity;
 import ec.edu.epn.triplog.R;
-import ec.edu.epn.triplog.vo.Viaje;
+import epn.edu.ec.triplog.vo.Viaje;
 
 /**
  * Created by ASUS R454LA on 11/12/2016.
@@ -54,7 +54,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
             public void onClick(View view) {
                 vi = viaje[position];
                 Intent intent=new Intent(getContext(),AdminHistorias.class);
-                intent.putExtra("idViaje",vi.getId());
+                intent.putExtra("idViaje",vi.getIdViaje());
                 getContext().startActivity(intent);
             }
         });
@@ -82,7 +82,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                     iv.setImageResource(R.drawable.ic_favorito);
                     Toast.makeText(getContext(), "Viaje agregado a favoritos", Toast.LENGTH_SHORT).show();
                 }
-                viajeActual.save();
+                //viajeActual.save();
             }
 
         });
@@ -112,17 +112,17 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         switch (menuItem.getItemId()){
             case R.id.action_equipaje:
                 Intent intent=new Intent(getContext(),AdminEquipaje.class);
-                intent.putExtra("idViaje",vi.getId());
+                intent.putExtra("idViaje",vi.getIdViaje());
                 getContext().startActivity(intent);
                 return true;
             case R.id.action_editar_viaje:
                 Intent intent1= new Intent(getContext(),AdminViaje.class);
-                intent1.putExtra("idViaje", vi.getId());
+                intent1.putExtra("idViaje", vi.getIdViaje());
                 getContext().startActivity(intent1);
                 return true;
             case R.id.action_eliminar_viaje:
                 vi.setActivo(false);
-                vi.save();
+                //vi.save();
                 Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
                 this.notifyDataSetChanged();
                 homeActivity.actualizar();
