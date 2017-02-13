@@ -22,7 +22,7 @@ import epn.edu.ec.utilitarios.VariablesGlobales;
 @Path("AdminHistoria")
 public class AdminHistoria {
 	
-	@POST
+	@GET
     @Path("insertar")
     public String insertar(@QueryParam("nombre") String nombre, @QueryParam("descripcion") String descripcion, @QueryParam("idViaje") int idViaje) {
         try {
@@ -76,7 +76,40 @@ public class AdminHistoria {
         return historias;
     }
 
-    @POST
+    @GET
+    @Path("consultarHistoriaPorViaje")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Historia> consultarHistoriaPorViaje(@QueryParam("idViaje")int idViaje) {
+        List<Historia> historias = new ArrayList<>();
+        try {
+
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+            PreparedStatement ps = con.prepareStatement("select * from historia where idViaje=?");
+            ps.setInt(1, idViaje);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Historia historia = new Historia();
+                historia.setIdHistoria(rs.getInt("idHistoria"));
+                historia.setNombre(rs.getString("nombre"));
+                historia.setDescripcion(rs.getString("descripcion"));
+                historia.setImagen(rs.getString("imagen"));
+                historia.setActivo(rs.getBoolean("activo"));
+                AdminViaje admV = new AdminViaje();
+                historia.setViaje(admV.consultarPorId(rs.getInt("idViaje")).get(0));
+                //e.setViaje(new Viaje());
+                historias.add(historia);
+            }
+
+            ps.close();
+            con.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return historias;
+    }
+    @GET
     @Path("eliminarPorId")
     public String eliminarPorId(@QueryParam("idHistoria") Integer idHistoria) {
         try {
