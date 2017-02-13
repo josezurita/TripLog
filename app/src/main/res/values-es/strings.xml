@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">TripLog</string>
     <string name="navigation_drawer_open">Abrir navegación</string>
     <string name="navigation_drawer_close">Cerrar navegación</string>
     <string name="myTrips">Mis Viajes</string>
@@ -63,11 +63,10 @@
     <string name="diarioDeViajes">Diario de Viajes</string>
     <string name="password">Contraseña</string>
     <string name="usuario">Usuario</string>
-    <string name="ejemploCorreo" translatable="false">usuario@epn.edu.ec</string>
     <string name="registroDeUsuarios">Registro de Usuarios</string>
     <string name="txtEquipaje">equipaje</string>
     <string name="nombre">Nombre</string>
     <string name="email">Correo</string>
-
-
+    <string name="editar_viaje">Editar</string>
+    <string name="eliminar_viaje">Eliminar</string>
 </resources>

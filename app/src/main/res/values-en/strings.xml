@@ -20,7 +20,7 @@
     <string name="hint_aerolinea">Enter the name of the airline</string>
     <string name="hint_descripción">Enter a trip description</string>
     <string name="hint_fechaFin">Select the end date of the trip</string>
-    <string name="hint_fechaInicio">Select the end date of the trip</string>
+    <string name="hint_fechaInicio">Select the start date of the trip</string>
     <string name="hint_items">Add a new item to your list</string>
     <string name="hint_nombre">Enter your travel destination</string>
     <string name="listaDeseos">Wish list</string>
@@ -29,7 +29,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="share">Share</string>
-    <string name="title_activity_wish_list">Lista de deseos</string>
+    <string name="title_activity_wish_list">Wish list</string>
     <string name="titulo_admin_alarma">Manage Alarm</string>
     <string name="titulo_admin_plan">Trip plan</string>
     <string name="titulo_admin_viaje">Manage Travel</string>
