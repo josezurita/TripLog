@@ -79,7 +79,7 @@ public class RegHistorias extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), "Registro modificado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Registro creado", Toast.LENGTH_SHORT).show();
         }
     }
 
