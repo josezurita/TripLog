@@ -24,8 +24,7 @@ import ec.edu.epn.triplog.AdminHistorias;
 import ec.edu.epn.triplog.R;
 import ec.edu.epn.triplog.RegHistorias;
 import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
-import ec.edu.epn.triplog.vo.Historia;
-
+import epn.edu.ec.triplog.vo.Historia;
 /**
  * Created by ASUS R454LA on 11/12/2016.
  */
@@ -80,18 +79,25 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
+
+            //es editar historia
             case R.id.action_editar_equipaje:
+
                 Intent intent1= new Intent(getContext(),RegHistorias.class);
-                intent1.putExtra("idHistoria", hist.getId());
+                intent1.putExtra("idHistoria", hist.getIdHistoria());
+
+                intent1.putExtra("idViaje", hist.getViaje().getIdViaje());
+                intent1.putExtra("nombre", hist.getNombre());
+                intent1.putExtra("descripcion", hist.getDescripcion());
                 getContext().startActivity(intent1);
-                Toast.makeText(getContext(),"Editar",Toast.LENGTH_LONG).show();
+
                 return true;
             case R.id.action_eliminar_equipaje:
                 /*---CON SQLITE---*/
                 //hist.setActivo(false);
                 //hist.save();
                 new HistoriaEliminarAsync().execute(hist);
-                Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
                 this.notifyDataSetChanged();
                 adminHistorias.actualizarHistorias();
                 return true;
@@ -111,7 +117,7 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
             HashMap<String, Object> valores = new HashMap<>();
-            valores.put("var1",historia.getId());
+            valores.put("var1",historia.getIdHistoria());
             valores.put("var2",historia.getNombre());
             valores.put("var3",historia.getDescripcion());
 
@@ -134,7 +140,7 @@ public class AdaptadorHistoria extends ArrayAdapter implements PopupMenu.OnMenuI
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
             HashMap<String, Object> valores = new HashMap<>();
 //
-            valores.put("var1",historia.getId() );
+            valores.put("var1",historia.getIdHistoria() );
 
             return restTemplate.getForObject(url, String.class, valores);
         }

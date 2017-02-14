@@ -50,6 +50,7 @@
     <string name="equipaje">Ver equipaje</string>
     <string name="feedbackDesciption">Escriba un comentario sobre TripLog</string>
     <string name="historias">Historias</string>
+    <string name="titulo_historias">Administrar Historias</string>
     <string name="lugar">Lugar</string>
 
     <string-array name="equipaje">
@@ -68,6 +69,8 @@
     <string name="txtEquipaje">equipaje</string>
     <string name="nombre">Nombre</string>
     <string name="email">Correo</string>
+    <string name="hint_nombre_historia">Ingrese nombre de la historia</string>
+    <string name="hint_desc_historia">Descripción de la historia</string>
 
 
 </resources>

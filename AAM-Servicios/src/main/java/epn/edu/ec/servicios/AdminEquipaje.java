@@ -93,17 +93,59 @@ public class AdminEquipaje {
     
 
     @GET
+    @Path("modificar")
+    public String modificar (
+    		@QueryParam("idEquipaje") int idEquipaje,
+    		@QueryParam("item") String item) {
+        try {
+
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+            PreparedStatement ps = con.prepareStatement("update equipaje set item=? where idEquipaje=?");
+            ps.setString(1, item);
+            ps.setInt(2, idEquipaje);
+            ps.executeQuery();
+            con.close();
+            return "registro editado";
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
+            return "error";
+        }
+    }
+    
+    @GET
+    @Path("listo")
+    public String listo (
+    		@QueryParam("idEquipaje") int idEquipaje,
+    		@QueryParam("listo") Boolean listo) {
+        try {
+
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+            PreparedStatement ps = con.prepareStatement("update equipaje set listo=? where idEquipaje=?");
+            ps.setBoolean(1, listo);
+            ps.setInt(2, idEquipaje);
+            ps.executeQuery();
+            con.close();
+            return "registro editado";
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
+            return "error";
+        }
+    }
+    
+    @GET
     @Path("eliminarPorId")
     public String eliminarPorId(@QueryParam("idEquipaje") Integer idEquipaje) {
         try {
 
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("update equipaje set activo=false where idhistoria=?");
+            PreparedStatement ps = con.prepareStatement("update equipaje set activo=false where idEquipaje=?");
             ps.setInt(1, idEquipaje);
             ps.executeQuery();
             con.close();
-            return "registro elimindo";
+            return "registro eliminado";
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
             return "error";

@@ -55,6 +55,7 @@ public class    AdminEquipaje extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
             return;
         }
+
         Equipaje equip = new Equipaje();
         equip.setActivo(true);
         equip.setItem(tv_equipaje.getText().toString().trim());
@@ -113,6 +114,46 @@ public class    AdminEquipaje extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<epn.edu.ec.triplog.vo.Equipaje> s) {
             setAdaptadorHistoria(s);
+        }
+    }
+
+    public class EditarEquipajeAsync extends AsyncTask<Equipaje,Void,String> {
+        @Override
+        protected String doInBackground(Equipaje... equipajes) {
+            final String url="http://"+ VariblesGlobales.IP+":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/modificar?idEquipaje={var1}" +
+                    "&item={var2}";
+            RestTemplate restTemplate=new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String,Object> valores=new HashMap<>();
+            valores.put("var1",equipajes[0].getIdEquipaje());
+            valores.put("var2",equipajes[0].getItem());
+            return restTemplate.getForObject(url,String.class,valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            new EquipajeViajeAsync().execute(idViaje);
+        }
+    }
+
+    public class ListoEquipajeAsync extends AsyncTask<Equipaje,Void,String> {
+        @Override
+        protected String doInBackground(Equipaje... equipajes) {
+            final String url="http://"+ VariblesGlobales.IP+":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminEquipaje/insertar?item={var1}" +
+                    "&idViaje={var2}";
+            RestTemplate restTemplate=new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String,Object> valores=new HashMap<>();
+            valores.put("var1",equipajes[0].getItem());
+            valores.put("var2",idViaje);
+            return restTemplate.getForObject(url,String.class,valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            new EquipajeViajeAsync().execute(idViaje);
         }
     }
 }

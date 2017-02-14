@@ -69,4 +69,7 @@
     <string name="email">Correo</string>
     <string name="editar_viaje">Editar</string>
     <string name="eliminar_viaje">Eliminar</string>
+    <string name="hint_desc_historia">Ingrese nombre de la historia</string>
+    <string name="hint_nombre_historia">Ingrese nombre de la historia</string>
+    <string name="titulo_historias">Administrar Historias</string>
 </resources>

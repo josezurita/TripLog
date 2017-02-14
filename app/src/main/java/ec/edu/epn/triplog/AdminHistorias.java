@@ -18,11 +18,12 @@ import java.util.List;
 
 import ec.edu.epn.triplog.Adaptadores.AdaptadorHistoria;
 import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
-import ec.edu.epn.triplog.vo.Historia;
+import epn.edu.ec.triplog.vo.Historia;
+import epn.edu.ec.triplog.vo.Viaje;
 
 public class AdminHistorias extends AppCompatActivity  {
 
-    private epn.edu.ec.triplog.vo.Viaje viaje;
+    private Viaje viaje;
     private ListView lv_historias;
 
     @Override
@@ -123,13 +124,13 @@ public class AdminHistorias extends AppCompatActivity  {
         }
 
         @Override
-        protected void onPostExecute(List<epn.edu.ec.triplog.vo.Historia> s) {
+        protected void onPostExecute(List<Historia> s) {
             setAdaptadorHistoria(s);
         }
     }
 
-    public void setAdaptadorHistoria(List<epn.edu.ec.triplog.vo.Historia> historias){
-        AdaptadorHistoria ah = new AdaptadorHistoria(this,historias.toArray(new Historia[historias.size()]),this);
+    public void setAdaptadorHistoria(List<Historia> historias){
+        AdaptadorHistoria ah = new AdaptadorHistoria(this, historias.toArray(new epn.edu.ec.triplog.vo.Historia[historias.size()]),this);
         lv_historias.setAdapter(ah);
     }
 

@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 
 import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
-import ec.edu.epn.triplog.vo.Historia;
-import ec.edu.epn.triplog.vo.Viaje;
+import epn.edu.ec.triplog.vo.Historia;
+import epn.edu.ec.triplog.vo.Viaje;
 
 public class RegHistorias extends AppCompatActivity {
 
@@ -27,11 +27,18 @@ public class RegHistorias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_historias);
-        viaje= Viaje.getById(getIntent().getLongExtra("idViaje",0));
+      //  viaje= Viaje.getById(getIntent().getLongExtra("idViaje",0));
         etNombreH=(EditText)findViewById(R.id.et_nombreH);
         etDescH=(EditText)findViewById(R.id.et_descH);
-        historia=Historia.getById(getIntent().getLongExtra("idHistoria",0));
-        if(historia!=null){
+        historia =new Historia();
+        historia.setIdHistoria(getIntent().getIntExtra("idHistoria", 0));
+        historia.setNombre(getIntent().getStringExtra("nombre"));
+        historia.setDescripcion(getIntent().getStringExtra("descripcion"));
+
+
+
+        //historia=Historia.getById(getIntent().getLongExtra("idHistoria",0));
+        if(historia.getIdHistoria()!=0){
             etNombreH.setText(historia.getNombre());
             etDescH.setText(historia.getDescripcion());
         }
@@ -42,7 +49,9 @@ public class RegHistorias extends AppCompatActivity {
              Toast.makeText(getApplicationContext(), "Ingrese los datos", Toast.LENGTH_SHORT).show();
              return;
          }
-         if(historia==null){
+         viaje= new Viaje();
+         viaje.setIdViaje(getIntent().getIntExtra("idViaje", 0));
+         if(historia.getIdHistoria()==0){
              historia = new Historia();
              historia.setViaje(viaje);
              historia.setActivo(true);
@@ -57,9 +66,9 @@ public class RegHistorias extends AppCompatActivity {
          }
 
          //historia.save();
-         etNombreH.setText("");
-         etDescH.setText("");
-         Toast.makeText(getApplicationContext(), "Equipaje ingresado", Toast.LENGTH_SHORT).show();
+         //etNombreH.setText("");
+         //etDescH.setText("");
+         Toast.makeText(getApplicationContext(), "Historia ingresada con éxito", Toast.LENGTH_SHORT).show();
          finish();
      }
 
@@ -74,12 +83,12 @@ public class RegHistorias extends AppCompatActivity {
             HashMap<String, Object> valores = new HashMap<>();
             valores.put("var1",historia.getNombre());
             valores.put("var2",historia.getDescripcion());
-            valores.put("var3",historia.getViaje().getId());
+            valores.put("var3",historia.getViaje().getIdViaje());
             return restTemplate.getForObject(url, String.class, valores);
         }
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), "Registro creado", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "hiiistoria creado", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -92,7 +101,7 @@ public class RegHistorias extends AppCompatActivity {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
             HashMap<String, Object> valores = new HashMap<>();
-            valores.put("var1",historia.getId());
+            valores.put("var1",historia.getIdHistoria());
             valores.put("var2",historia.getNombre());
             valores.put("var3",historia.getDescripcion());
             return restTemplate.getForObject(url, String.class, valores);

@@ -61,4 +61,7 @@
         <item>Brazil</item>
         <item>Argentina</item>
     </string-array>
+    <string name="hint_desc_historia">Enter story name</string>
+    <string name="hint_nombre_historia">Description of the story</string>
+    <string name="titulo_historias">Manage Stories</string>
 </resources>

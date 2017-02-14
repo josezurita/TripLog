@@ -89,7 +89,7 @@ public class AdminHistoria {
 
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("select * from historia where idViaje=?");
+            PreparedStatement ps = con.prepareStatement("select * from historia where idViaje=? and activo= true");
             ps.setInt(1, idViaje);
             ResultSet rs = ps.executeQuery();
 

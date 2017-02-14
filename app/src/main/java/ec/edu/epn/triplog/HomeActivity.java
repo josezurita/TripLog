@@ -130,6 +130,12 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.favoritos) {
+            //Intent intent = new Intent(this, HomeActivity.class);
+            //intent.putExtra("usuario",usuario.getUsuario());
+            //intent.putExtra("lista_favoritos","lista_favoritos");
+            //startActivity(intent);
+
+
 
         } else if (id == R.id.listaDeseos) {
             Intent intent = new Intent(this, WishList.class);
@@ -223,4 +229,6 @@ public class HomeActivity extends AppCompatActivity
             setAdaptadorViaje(s);
         }
     }
+
+
 }
