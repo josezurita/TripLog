@@ -46,15 +46,16 @@ public class AdminHistoria {
     @GET
     @Path("consultar")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Historia> consultar() {
+    public Historia consultar(@QueryParam("id")int idHistoria) {
         List<Historia> historias = new ArrayList<>();
         try {
 
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("select * from historia");
+            PreparedStatement ps = con.prepareStatement("select * from historia where idHistoria=?");
+            ps.setInt(1, idHistoria);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Historia historia = new Historia();
                 historia.setIdHistoria(rs.getInt("idHistoria"));
@@ -66,14 +67,14 @@ public class AdminHistoria {
                 historia.setViaje(admV.consultarPorId(rs.getInt("idViaje")).get(0));
                 //e.setViaje(new Viaje());
                 historias.add(historia);
+                ps.close();
+                con.close();
+                return historia;
             }
-
-            ps.close();
-            con.close();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdminEquipaje.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return historias;
+		return null;
     }
 
     @GET
@@ -109,6 +110,41 @@ public class AdminHistoria {
         }
         return historias;
     }
+    
+    @GET
+    @Path("modificar")
+    public String modificar(
+    		@QueryParam("idHistoria") int idHistoria,
+    		@QueryParam("nombre") String nombre,
+    		@QueryParam("descripcion") String descripcion){
+    	
+    	try {
+    				
+    		Class.forName("org.postgresql.Driver");
+    		Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog",VariablesGlobales.USUARIO,VariablesGlobales.CLAVE);
+    		System.out.println("Conexión exitosa");
+    		
+    		PreparedStatement ps = (PreparedStatement) con.prepareStatement(
+    				"UPDATE historia SET nombre =?, descripcion= ? WHERE idHistoria =?");
+    		
+    		ps.setString(1, nombre);
+    		ps.setString(2, descripcion);
+    		ps.setInt(3, idHistoria);
+    		
+    		ps.executeUpdate();
+    		ps.close();
+    		con.close();
+
+    	return "historia modificado con éxito";
+
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    		e.printStackTrace();
+    		return "Error";
+    	}
+    	
+    }
+    
     @GET
     @Path("eliminarPorId")
     public String eliminarPorId(@QueryParam("idHistoria") Integer idHistoria) {
