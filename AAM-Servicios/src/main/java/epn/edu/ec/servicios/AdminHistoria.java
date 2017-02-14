@@ -24,7 +24,10 @@ public class AdminHistoria {
 	
 	@GET
     @Path("insertar")
-    public String insertar(@QueryParam("nombre") String nombre, @QueryParam("descripcion") String descripcion, @QueryParam("idViaje") int idViaje) {
+    public String insertar(
+    		@QueryParam("nombre") String nombre,
+    		@QueryParam("descripcion") String descripcion,
+    		@QueryParam("idViaje") int idViaje) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
