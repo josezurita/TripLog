@@ -38,15 +38,16 @@ public class AdminEquipaje {
 
     @GET
     @Path("insertar")
-    public String insertar(@QueryParam("item") String item) {
+    public String insertar(@QueryParam("item") String item,@QueryParam("idViaje") Integer idViaje) {
         try {
 
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
-            PreparedStatement ps = con.prepareStatement("insert into equipaje (item,listo,activo) values (?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into equipaje (item,listo,activo,idViaje) values (?,?,?,?)");
             ps.setString(1, item);
             ps.setBoolean(2, false);
             ps.setBoolean(3, true);
+            ps.setInt(4, idViaje);
             ps.executeUpdate();
             ps.close();
             con.close();

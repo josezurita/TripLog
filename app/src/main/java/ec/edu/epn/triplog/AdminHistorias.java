@@ -3,16 +3,12 @@ package ec.edu.epn.triplog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,10 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ec.edu.epn.triplog.Adaptadores.AdaptadorHistoria;
-import ec.edu.epn.triplog.Adaptadores.AdaptadorViaje;
 import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
 import ec.edu.epn.triplog.vo.Historia;
-import ec.edu.epn.triplog.vo.Viaje;
 
 public class AdminHistorias extends AppCompatActivity  {
 
@@ -39,7 +33,7 @@ public class AdminHistorias extends AppCompatActivity  {
         //viaje= Viaje.getById();
         lv_historias = (ListView) findViewById(R.id.lv_historias);
         lv_historias.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        new ViajeInformationAsync().execute(getIntent().getLongExtra("idViaje",0)+"");
+        new ViajeInformationAsync().execute(getIntent().getIntExtra("idViaje",0)+"");
 
         //List<Historia> lstHistorias=Historia.getAll(viaje);
         //System.out.println(lstHistorias.size());
@@ -95,7 +89,7 @@ public class AdminHistorias extends AppCompatActivity  {
         @Override
         protected List<epn.edu.ec.triplog.vo.Viaje> doInBackground(String... strings) {
 
-            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminUsuario/" +
+            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
                     "consultarPorId?idViaje={var1}";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -118,7 +112,7 @@ public class AdminHistorias extends AppCompatActivity  {
         @Override
         protected List<epn.edu.ec.triplog.vo.Historia> doInBackground(Integer... args) {
 
-            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
+            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminHistoria/" +
                     "consultarHistoriaPorViaje?idViaje={var1}";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());

@@ -1,6 +1,5 @@
 package ec.edu.epn.triplog;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +13,11 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import ec.edu.epn.triplog.Utilitarios.VariblesGlobales;
-
 import epn.edu.ec.triplog.vo.Usuario;
 import epn.edu.ec.triplog.vo.Viaje;
 
@@ -61,16 +58,16 @@ public class AdminViaje extends AppCompatActivity {
 
         }
 
-
     }
 
     public void guardarViaje(View v) {
-
+        System.out.println("entro");
         if (edtNombreViaje.getText().toString().isEmpty() || edtDescripcion.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
             return;
         }
         if (viaje.getIdViaje() != 0) {
+            System.out.println("entro 2");
             viaje.setLugarViaje(edtNombreViaje.getText().toString());
             viaje.setDescripcionViaje(edtDescripcion.getText().toString());
             new ViajeModificarAsync().execute(viaje);
@@ -110,19 +107,20 @@ public class AdminViaje extends AppCompatActivity {
             valores.put("var1", strings[0]);
             valores.put("var2", Integer.parseInt(strings[1]));
             ResponseEntity<Viaje[]> responseEntity = restTemplate.getForEntity(url, Viaje[].class, valores);
+            System.out.println("verificando");
             return Arrays.asList(responseEntity.getBody());
         }
 
         @Override
         protected void onPostExecute(List<Viaje> s) {
-
+            System.out.println("post");
             if (!s.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "viaje ya existe " + s.get(0).getLugarViaje(), Toast.LENGTH_SHORT).show();
                 return;
             }
             Viaje viaj;
 
-            if (viaje == null) {
+            if (viaje.getIdViaje() == 0) {
                 viaj = new Viaje();
                 viaj.setUsuario(usuario);
                 viaj.setLugarViaje(edtNombreViaje.getText().toString().trim());
@@ -131,6 +129,7 @@ public class AdminViaje extends AppCompatActivity {
                 viaj.setActivo(true);
                 new AdminViaje.ViajeRegisterAsync().execute(viaj);
             } else {
+                System.out.println("viaje no null");
                 viaj = viaje;
             }
         }

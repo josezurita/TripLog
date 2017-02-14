@@ -1,7 +1,6 @@
 package ec.edu.epn.triplog.Adaptadores;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -15,10 +14,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ec.edu.epn.triplog.AdminEquipaje;
-import ec.edu.epn.triplog.AdminViaje;
 import ec.edu.epn.triplog.R;
-import ec.edu.epn.triplog.vo.Equipaje;
+import epn.edu.ec.triplog.vo.Equipaje;
 
 /**
  * Created by ASUS R454LA on 11/12/2016.
