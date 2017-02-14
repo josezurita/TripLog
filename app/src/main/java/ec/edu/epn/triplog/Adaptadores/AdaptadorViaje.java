@@ -93,6 +93,7 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                     iv.setImageResource(R.drawable.ic_favorito);
                     Toast.makeText(getContext(), "Viaje agregado a favoritos", Toast.LENGTH_SHORT).show();
                 }
+                new ViajeFavoritoAsync().execute(viajeActual);
                 //viajeActual.save();
             }
 
@@ -137,10 +138,10 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
                 getContext().startActivity(intent1);
                 return true;
             case R.id.action_eliminar_viaje:
-                vi.setActivo(false);
-                System.out.print(idViaje);
+                //vi.setActivo(false);
+                //System.out.print(idViaje);
 
-                new ViajeEliminarAsync().execute(idViaje);
+                new ViajeEliminarAsync().execute(vi);
                 //vi.save();
                 Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
                 this.notifyDataSetChanged();
@@ -151,23 +152,51 @@ public class AdaptadorViaje extends ArrayAdapter implements PopupMenu.OnMenuItem
         }
     }
 
-    public class ViajeEliminarAsync extends AsyncTask<Integer, Void, String> {
-        @Override
-        protected String doInBackground(Integer... idViaje) {
 
+    public class ViajeEliminarAsync extends AsyncTask<Viaje, Void, String> {
+        @Override
+        protected String doInBackground(Viaje... viajes) {
+            Viaje viaje = viajes[0];
             //String str="UPDATE viaje SET lugar ='holahola', descripcion= 'mrhmrh'WHERE idUsuario = 1 and idViaje=23";
             final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
                     "eliminarPorId?idViaje={var1}";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
             HashMap<String, Object> valores = new HashMap<>();
-            valores.put("var1", idViaje);
-            return restTemplate.getForObject(url,String.class,valores);
+//
+            valores.put("var1",viaje.getIdViaje() );
+
+            return restTemplate.getForObject(url, String.class, valores);
         }
 
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+    public class ViajeFavoritoAsync extends AsyncTask<Viaje, Void, String> {
+        @Override
+        protected String doInBackground(Viaje... viajes) {
+            Viaje viaje = viajes[0];
+            //String str="UPDATE viaje SET lugar ='holahola', descripcion= 'mrhmrh'WHERE idUsuario = 1 and idViaje=23";
+            final String url = "http://" + VariblesGlobales.IP + ":8080/AAM-Servicios-1.0-SNAPSHOT/rest/AdminViaje/" +
+                    "favoritoPorId?idViaje={var1}&favorito={var2}";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+            HashMap<String, Object> valores = new HashMap<>();
+//
+            valores.put("var1",viaje.getIdViaje() );
+            valores.put("var2",viaje.isFavoritoViaje() );
+
+            return restTemplate.getForObject(url, String.class, valores);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
 
         }
     }

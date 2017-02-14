@@ -257,4 +257,29 @@ public String modificar(
 	}
 	
 }
+
+@GET
+@Path("favoritoPorId")
+public String favoritoPorId(@QueryParam("idViaje") Integer idViaje,
+		@QueryParam("favorito") Boolean favorito) {
+    try {
+
+        Class.forName("org.postgresql.Driver");
+        Connection con = DriverManager.getConnection("jdbc:postgresql://"+VariablesGlobales.IP+":5432/triplog", VariablesGlobales.USUARIO, VariablesGlobales.CLAVE);
+        PreparedStatement ps = con.prepareStatement("update viaje set favorito=? where idViaje=?");
+        ps.setBoolean(1, favorito);
+        ps.setInt(2, idViaje);
+        ps.executeUpdate();
+        con.close();
+        if(favorito==true){
+        	return "Viaje agregado a favoritos";
+        }else{
+        	return "Viaje retirado de favoritos";
+        }
+        
+    } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(AdminViaje.class.getName()).log(Level.SEVERE, null, ex);
+        return "error";
+    }
+}
 }
